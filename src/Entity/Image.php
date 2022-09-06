@@ -27,6 +27,11 @@ class Image
      */
     private $chapter;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagesChapter;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Image
     public function setChapter(?Chapter $chapter): self
     {
         $this->chapter = $chapter;
+
+        return $this;
+    }
+
+    public function getImagesChapter(): ?string
+    {
+        return $this->imagesChapter;
+    }
+
+    public function setImagesChapter(string $imagesChapter): self
+    {
+        $this->imagesChapter = $imagesChapter;
 
         return $this;
     }
