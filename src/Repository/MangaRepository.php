@@ -39,20 +39,20 @@ class MangaRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Manga[] Returns an array of Manga objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Manga[] Returns an array of Manga objects
+    */
+   public function findByAndSort($value): array
+   {
+       return $this->createQueryBuilder('m')
+           ->andWhere('m.photoManga = :val')
+           ->setParameter('val', $value)
+           ->orderBy('m.id', 'DESC')
+           ->setMaxResults(20)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Manga
 //    {
