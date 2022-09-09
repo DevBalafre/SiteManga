@@ -86,7 +86,7 @@ class ImageCrudController extends AbstractCrudController
         $context->getEntity()->setInstance($entityInstance);
 
         if ($newForm->isSubmitted() && $newForm->isValid()) {
-
+                // Auto-generation des titres pours les pages de mangas
             $chapter = $entityInstance->getChapter();
             $lastImage = $this->imageRepository->findLastTitle($chapter);
 
