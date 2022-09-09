@@ -72,7 +72,9 @@ class Chapter
 
         return $this;
     }
-
+    // $manga = $chapter->getManga()
+    // $manga->setUpdatedAt(new \Datetime);
+    // $em->persist($manga);
     public function getManga(): ?Manga
     {
         return $this->manga;

@@ -39,28 +39,27 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
-   /**
-    * @return Image[] Returns an array of Image objects
-    */
-   public function findLastTitle(string $lastTitle): array 
-   {
-       return $this->createQueryBuilder('i')
-           ->andWhere('i.title = :title')
-           ->setParameter('title', $lastTitle)
-           ->orderBy('i.title', 'DESC')
-           ->setMaxResults(1)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+    /**
+     * @return Image[] Returns an array of Image objects
+     */
+    public function findLastTitle($chapter)
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.chapter = :chapter')
+            ->setParameter(':chapter', $chapter)
+            ->orderBy('i.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Image
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Image
+    //    {
+    //        return $this->createQueryBuilder('i')
+    //            ->andWhere('i.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -25,116 +25,107 @@ use EasyCorp\Bundle\EasyAdminBundle\Exception\InsufficientEntityPermissionExcept
 
 class ImageCrudController extends AbstractCrudController
 {
+    private $imageRepository;
+
+    public function __construct(ImageRepository $imageRepository)
+    {
+        $this->imageRepository = $imageRepository;
+    }
+
     public static function getEntityFqcn(): string
     {
         return Image::class;
     }
-    
-    
-    
+
+
+
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title'),
+            TextField::new('title')->hideOnForm(),
             ImageField::new('imagesChapter')
                 ->setUploadDir("public/uploads/imagesChapter")
                 ->setBasePath("/uploads")
                 ->setRequired(false)
+                ->onlyOnForms()
                 ->setUploadedFileNamePattern("[contenthash].[extension]"),
+                ImageField::new('imagesChapter')
+                ->setBasePath("/uploads/imagesChapter")            
+                ->onlyOnIndex(),
 
             AssociationField::new("chapter")
                 ->setFormTypeOption("choice_label", "title")
         ];
     }
-    //Faire automatiquement l'ajout de titre 
-    // public function lastTitle(ImageRepository $imageRepository, Image $image){
-    //     $lastTitle= $imageRepository->findLastTitle(string);
-    //     $chiffre=1;
-    //     $chiffre++;
-    //     return $lastTitle;
-    //     $lastTitle->setTitle('Page' . $chiffre);
-    //     dd($lastTitle);
-    // } 
-  
-//     public function new(AdminContext $context)
-//     {
-//         $event = new BeforeCrudActionEvent($context);
-//         $this->container->get('event_dispatcher')->dispatch($event);
-//         if ($event->isPropagationStopped()) {
-//             return $event->getResponse();
-//         }
 
-//         if (!$this->isGranted(Permission::EA_EXECUTE_ACTION, ['action' => Action::NEW, 'entity' => null])) {
-//             throw new ForbiddenActionException($context);
-//         }
+    public function new(AdminContext $context)
+    {
+        $event = new BeforeCrudActionEvent($context);
+        $this->container->get('event_dispatcher')->dispatch($event);
+        if ($event->isPropagationStopped()) {
+            return $event->getResponse();
+        }
 
-//         if (!$context->getEntity()->isAccessible()) {
-//             throw new InsufficientEntityPermissionException($context);
-//         }
+        if (!$this->isGranted(Permission::EA_EXECUTE_ACTION, ['action' => Action::NEW, 'entity' => null])) {
+            throw new ForbiddenActionException($context);
+        }
 
-//         $context->getEntity()->setInstance($this->createEntity($context->getEntity()->getFqcn()));
-//         $this->container->get(EntityFactory::class)->processFields($context->getEntity(), FieldCollection::new($this->configureFields(Crud::PAGE_NEW)));
-//         $this->container->get(EntityFactory::class)->processActions($context->getEntity(), $context->getCrud()->getActionsConfig());
+        if (!$context->getEntity()->isAccessible()) {
+            throw new InsufficientEntityPermissionException($context);
+        }
 
-//         $newForm = $this->createNewForm($context->getEntity(), $context->getCrud()->getNewFormOptions(), $context);
-//         $newForm->handleRequest($context->getRequest());
+        $context->getEntity()->setInstance($this->createEntity($context->getEntity()->getFqcn()));
+        $this->container->get(EntityFactory::class)->processFields($context->getEntity(), FieldCollection::new($this->configureFields(Crud::PAGE_NEW)));
+        $this->container->get(EntityFactory::class)->processActions($context->getEntity(), $context->getCrud()->getActionsConfig());
 
-//         $entityInstance = $newForm->getData();
-//         $context->getEntity()->setInstance($entityInstance);
-//         $chiffre = 1;
+        $newForm = $this->createNewForm($context->getEntity(), $context->getCrud()->getNewFormOptions(), $context);
+        $newForm->handleRequest($context->getRequest());
 
-//         if ($newForm->isSubmitted() && $newForm->isValid()) {
+        $entityInstance = $newForm->getData();
+        $context->getEntity()->setInstance($entityInstance);
 
-//             // $chapter = $entityInstance->getChapter();
-//             // $images = $chapter->getImages();
+        if ($newForm->isSubmitted() && $newForm->isValid()) {
 
-//             // $lastImage = end($images);
-//             // $lastTitle = $lastImage->getTitle();
-            
-             
+            $chapter = $entityInstance->getChapter();
+            $lastImage = $this->imageRepository->findLastTitle($chapter);
 
-//             // $chiffre++;
-//             // $lastTitle->setTitle('Page' . $chiffre);
+            if (!empty($lastImage)) {
+                $lastTitle = $lastImage[0]->getTitle();
+                $nb = (int)str_replace('Page ', '', $lastTitle);
+                $pageTitle = 'Page ' . ($nb + 1);
+                $entityInstance->setTitle($pageTitle);
+            } else {
+                $entityInstance->setTitle('Page 0');
+            }
 
+            $this->processUploadedFiles($newForm);
 
-            // dd($lastTitle);
+            $event = new BeforeEntityPersistedEvent($entityInstance);
+            $this->container->get('event_dispatcher')->dispatch($event);
+            $entityInstance = $event->getEntityInstance();
 
-//             // die();
-//             // récupérer le title de la dernière image ($title = $image->getTitle())
-//             // récupérer le chifre de ce title
-//             // incrémenter de 1 ce chiffre
-//             // redéfinir le title de l'image à stocker en bdd ($image->setTitle('Page' . LE_CHIFFRE))
-//             // 
+            $this->persistEntity($this->container->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn()), $entityInstance);
 
+            $this->container->get('event_dispatcher')->dispatch(new AfterEntityPersistedEvent($entityInstance));
+            $context->getEntity()->setInstance($entityInstance);
 
-//             $this->processUploadedFiles($newForm);
+            return $this->getRedirectResponseAfterSave($context, Action::NEW);
+        }
 
-//             $event = new BeforeEntityPersistedEvent($entityInstance);
-//             $this->container->get('event_dispatcher')->dispatch($event);
-//             $entityInstance = $event->getEntityInstance();
+        $responseParameters = $this->configureResponseParameters(KeyValueStore::new([
+            'pageName' => Crud::PAGE_NEW,
+            'templateName' => 'crud/new',
+            'entity' => $context->getEntity(),
+            'new_form' => $newForm,
+        ]));
 
-//             $this->persistEntity($this->container->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn()), $entityInstance);
+        $event = new AfterCrudActionEvent($context, $responseParameters);
+        $this->container->get('event_dispatcher')->dispatch($event);
+        if ($event->isPropagationStopped()) {
+            return $event->getResponse();
+        }
 
-//             $this->container->get('event_dispatcher')->dispatch(new AfterEntityPersistedEvent($entityInstance));
-//             $context->getEntity()->setInstance($entityInstance);
-
-//             return $this->getRedirectResponseAfterSave($context, Action::NEW);
-//         }
-
-//         $responseParameters = $this->configureResponseParameters(KeyValueStore::new([
-//             'pageName' => Crud::PAGE_NEW,
-//             'templateName' => 'crud/new',
-//             'entity' => $context->getEntity(),
-//             'new_form' => $newForm,
-//         ]));
-
-//         $event = new AfterCrudActionEvent($context, $responseParameters);
-//         $this->container->get('event_dispatcher')->dispatch($event);
-//         if ($event->isPropagationStopped()) {
-//             return $event->getResponse();
-//         }
-
-//         return $responseParameters;
-//     }
+        return $responseParameters;
+    }
 }

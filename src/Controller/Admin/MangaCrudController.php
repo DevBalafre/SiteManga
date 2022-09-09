@@ -25,7 +25,11 @@ class MangaCrudController extends AbstractCrudController
                 ->setUploadDir("public/uploads/imageManga")
                 ->setBasePath("/uploads")
                 ->setRequired(false)
-                ->setUploadedFileNamePattern("[contenthash].[extension]"),
+                ->setUploadedFileNamePattern("[contenthash].[extension]")
+                ->onlyOnForms(),
+            ImageField::new('photo_manga')
+                ->setBasePath("/uploads/imageManga")
+                ->onlyOnIndex(),
 
             AssociationField::new("categorie")
                 ->setFormTypeOption("choice_label", "title")
