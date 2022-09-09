@@ -21,6 +21,7 @@ class ChapterCrudController extends AbstractCrudController
         return [
             TextField::new('title'),
             DateTimeField::new("date_uploads")->setFormat("dd/MM/Y HH:mm"),
+
             AssociationField::new("manga")
                 ->setFormTypeOption("choice_label", "title")
         ];
