@@ -29,12 +29,21 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Contactez-nous</a>
                         </li>
+
+                        {% if  app.user %}
+                        <p class="nav-link" href="#" role="button">
+                            <h1>Bonjour :  {{app.user.pseudo}} </h1>
+                          </p>
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link active" href="/login">Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Incription</a>
+                            <a class="nav-link active" href="/register">Incription</a>
                         </li>
+                        {% endif %}
+                       
+
                     </ul>
                     {# Mettre le Prenom de l'Users'il il es connecter donc faire un if #}
 
