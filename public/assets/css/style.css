@@ -1,0 +1,78 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+/* Reset */
+* {
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Variables */
+:root {
+  --font-size: 1rem;
+}
+
+.light-mode {
+  --navabar-color: #222;
+  --navbar-bg-color: #F0F0F0;
+}
+
+.dark-mode {
+  --navabar-color: #FFF;
+  --navbar-bg-color: #000;
+}
+
+/* Base */
+body {
+  font-size: var(--font-size);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Navbar*/
+nav {
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  color: var(--navabar-color);
+  background-color: var(--navbar-bg-color);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  list-style-type: none;
+  margin: auto;
+}
+nav ul li {
+  padding: 0px 10px;
+  text-align: center;
+}
+nav ul li a {
+  color: var(--navabar-color);
+}
+nav .mobil {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111827;
+  cursor: pointer;
+  transition: 0.4s transform linear;
+}
+nav svg {
+  max-width: 50px;
+  max-height: 50px;
+  stroke: aliceblue;
+}
+
+/*# sourceMappingURL=style.css.map */

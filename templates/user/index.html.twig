@@ -3,9 +3,9 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-
+Classer les manga sur la page principale via les derniers chapitres
 <br>
-Faires la page principale du site
+Faires un slide en haut
 <br>
 Faire un CRUD dans l'espace gestion de compte
 <br>
@@ -27,16 +27,29 @@ Faire un formulaire contact
     </tbody> #}
 </table>
 
-<div class="card">
 
-    <div class="card-body">
-        {% for manga in lastManga %}
-        <a href="#"> <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""> </a>
-        {% endfor %}
 
+
+
+{% for manga in lastManga %}
+<div>
+
+    <div >
+        <a href="#"> <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
+            <h3>{{ manga.title }}</h3>
+        </a>
+
+        
+
+        <p> {{manga.description|raw }} </p>
 
     </div>
-
 </div>
+{% endfor %}
+
+
+
+
+
 
 {% endblock %}
