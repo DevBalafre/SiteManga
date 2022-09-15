@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/homepage.css')}}">
+    {% endblock %}
+    
+
+
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
@@ -30,7 +36,8 @@ Faire un formulaire contact
 
 
 
-<div>
+
+<div class="parent">
     {% for manga in lastManga %}
 
 
@@ -41,15 +48,15 @@ Faire un formulaire contact
 
 
 
-        <p> {{manga.description|raw }} </p>
+        {# <p> {{manga.description|raw }} </p> #}
 
     </div>
 
     {% endfor %}
 
 </div>
-
-
+{# Faire la Pagination #}
+<a href="">Pagination</a>
 
 
 {% endblock %}

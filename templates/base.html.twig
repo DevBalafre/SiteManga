@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
@@ -30,14 +30,14 @@
 
 
         <nav class="navbar dark-mode" role="navigation">
-            <h1 class="navbar__logo"> <a href="/">LOGO</a> </h1>
+             <a class="navbar__logo" href="/"><h1 >LOGO</h1></a> 
             <ul class="navbar__links">
                 <li class="navbar__link first"><a href="#">Categorie</a></li>
-                <li class="navbar__link second"><a href="{{path("app_login")}} ">Connexion</a></li>
+                <li class="navbar__link second"><a href="{{path('app_login')}} ">Connexion</a></li>
                 {% if app.user %}
-                    <li class="navbar__link third"> <a href="#"> Bonjour : {{app.user.pseudo}}</a></li>
+                <li class=" navbar__link third"> <a href="#"> Bonjour : {{app.user.pseudo}}</a></li>
                 {% else %}
-                <li class="navbar__link third"><a href="{{path("app_register")}}">Incription</a></li>
+                <li class="navbar__link third"><a href="{{path('app_register')}}">Incription</a></li>
                 <li class="navbar__link four"><a href="#">Contact</a></li>
                 {% endif %}
             </ul>
@@ -45,7 +45,7 @@
                 <span class="bar"></span>
             </button>
         </nav>
-       
+
 
 
     </header>
@@ -60,7 +60,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
-    <script src="{{asset("assets/js/script.js")}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
 </body>
 
 </html>

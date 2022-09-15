@@ -21,9 +21,8 @@ class UserController extends AbstractController
     public function index(CategorieRepository  $categorieRepository, ChapterRepository  $ChapterRepository, MangaRepository $mangaRepository): Response
     {
 
-        $manga = new Manga();
         $list = $categorieRepository->findAll(); // select * from categorie
-        $lastManga = $mangaRepository->findBy([], ['id' => 'DESC'], 20);
+        $lastManga = $mangaRepository->findBy([], ['id' => 'DESC'], 9);
         $lastChapter = $ChapterRepository->findByAndSort([]);
         return $this->render('user/index.html.twig', [
             "listCategorie" => $list,

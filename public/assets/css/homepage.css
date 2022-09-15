@@ -1,0 +1,16 @@
+.parent {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.parent div {
+  max-width: 25.5%;
+}
+.parent div h3 {
+  font-size: 1.25rem;
+}
+.parent div img {
+  max-width: 50%;
+}
+
+/*# sourceMappingURL=homepage.css.map */

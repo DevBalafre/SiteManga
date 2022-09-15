@@ -1,0 +1,16 @@
+.parent {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    & div {
+        max-width: 25.5%;
+       & h3{
+        font-size: 1.25rem;
+       }
+        & img {
+            max-width: 50%;
+        }
+    }
+
+}
