@@ -30,9 +30,9 @@ Faire un formulaire contact
 
 
 
-
-{% for manga in lastManga %}
 <div>
+    {% for manga in lastManga %}
+
 
     <div>
         <a href="#"> <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
@@ -44,10 +44,10 @@ Faire un formulaire contact
         <p> {{manga.description|raw }} </p>
 
     </div>
+
+    {% endfor %}
+
 </div>
-{% endfor %}
-
-
 
 
 
