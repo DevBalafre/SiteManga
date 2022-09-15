@@ -34,12 +34,12 @@ Faire un formulaire contact
 {% for manga in lastManga %}
 <div>
 
-    <div >
+    <div>
         <a href="#"> <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
             <h3>{{ manga.title }}</h3>
         </a>
 
-        
+
 
         <p> {{manga.description|raw }} </p>
 
