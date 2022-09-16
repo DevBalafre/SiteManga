@@ -23,7 +23,10 @@ class UserController extends AbstractController
 
         $list = $categorieRepository->findAll(); // select * from categorie
         $lastManga = $mangaRepository->findBy([], ['id' => 'DESC'], 9);
-        $lastChapter = $ChapterRepository->findByAndSort([]);
+        foreach ($lastManga as $manga) {
+            $lastChapter = $ChapterRepository->findByAndSort(['id' => $manga->getId()]);
+        }
+
         return $this->render('user/index.html.twig', [
             "listCategorie" => $list,
             'lastManga' => $lastManga,

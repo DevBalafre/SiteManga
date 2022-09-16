@@ -45,10 +45,10 @@ class ChapterRepository extends ServiceEntityRepository
    public function findByandSort($value): array
    {
        return $this->createQueryBuilder('c')
-           ->andWhere('c.title = :title')
-           ->setParameter('title', $value)
-           ->orderBy('c.title', 'DESC')
-           ->setMaxResults(20)
+           ->andWhere('c.id = :id')
+           ->setParameter('id', $value)
+           ->orderBy('c.id', 'DESC')
+           ->setMaxResults(5)
            ->getQuery()
            ->getResult()
        ;
