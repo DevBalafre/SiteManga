@@ -9,13 +9,11 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
+
+{# 
 Classer les manga sur la page principale via les derniers chapitres
-<br>
-Faires un slide en haut
-<br>
-Faire un CRUD dans l'espace gestion de compte
-<br>
-Faire un formulaire contact
+
+Faire un CRUD dans l'espace gestion de compte #}
 
 
 
@@ -41,11 +39,15 @@ Faire un formulaire contact
     {% for manga in lastManga %}
 
 
-    <div>
-        <a href="#"> <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
-            <h3>{{ manga.title }}</h3>
-        </a>
-
+    <div class="manga">
+        <a class="img" href="#"><img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""></a>
+        <div class="second">
+            <a href="#"><h3>{{ manga.title }}</h3></a> 
+            <div class="chapterList">
+                {# Boucle for avec des a pour chaque chapitre #}
+            </div>
+        </div>
+      
 
 
         {# <p> {{manga.description|raw }} </p> #}

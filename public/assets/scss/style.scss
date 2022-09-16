@@ -4,10 +4,7 @@
 :root {
   --font-size:1rem;
 }
-.light-mode {
-  --navbar-color: #222;
-  --navbar-bg-color: #F0F0F0;  
-}
+
 .dark-mode {
   --navbar-color: #FFF;
   --navbar-bg-color: #000;  
@@ -29,15 +26,19 @@ body {
   margin:0;
   font-size:var(--font-size);
   font-family: 'Poppins', sans-serif;
+  background-color: rgb(22, 21, 29);
 }
 .main-content {
-  padding:1rem;
+  padding-top: 1.5rem;
 }
 a{
     text-decoration: none;
 }
-h1{
-    color:var(--navbar-color);
+h1, h2, h3{
+    color:#FFF;
+}
+.manga{
+  background-color: rgb(34, 34, 34);
 }
 /* Navbar */
 .navbar {  
@@ -48,6 +49,7 @@ h1{
   font-size:1.1rem;
   background:var(--navbar-bg-color);
   color:var(--navbar-color);
+
 }
 .navbar__links { 
   display:flex;  
@@ -65,6 +67,9 @@ h1{
 
 /*  Small device */
 @media screen and (max-width:767.98px) {
+  .main-content {
+    padding-top: 0.5rem;
+  }
   .navbar__links { 
     overflow:hidden;
     display:flex;
@@ -103,7 +108,7 @@ h1{
     letter-spacing:5px;
   }
   
-  /* Toggle menu */
+  /* Burger  */
   .burger {
     display:block;
     position:relative;
@@ -167,6 +172,9 @@ h1{
 
 /*  Medium device  */
 @media screen and (min-width:768px) {
+  .main-content {
+    padding-top: 1.25rem;
+  }
   .navbar__link > a::after {
     display:block;
     content:"";
