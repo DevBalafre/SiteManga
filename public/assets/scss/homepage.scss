@@ -29,7 +29,13 @@
                 font-size: 1rem;
 
             }
-
+        .chapterList{
+            display: flex;
+            flex-direction: column;
+            a{
+                padding: 4px 0;
+            }
+        }
 
         }
 

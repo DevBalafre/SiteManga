@@ -38,11 +38,11 @@ Faire un CRUD dans l'espace gestion de compte #}
 
 
     <div class="manga">
-        <a class="img" href="#"><img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""></a>
+        <a class="img" href="/manga/{{ manga.id }}"><img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""></a>
 
         <div class="second">
 
-            <a href="#">
+            <a href="/manga/{{ manga.id }}">
                 <h3>{{ manga.title }}</h3>
             </a>
 
