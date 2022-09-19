@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-    {% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('assets/css/homepage.css')}}">
-    {% endblock %}
-    
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/homepage.css')}}">
+{% endblock %}
+
 
 
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
 
-{# 
+{#
 Classer les manga sur la page principale via les derniers chapitres
 
 Faire un CRUD dans l'espace gestion de compte #}
@@ -32,8 +32,6 @@ Faire un CRUD dans l'espace gestion de compte #}
 </table>
 
 
-{{ dump(lastManga) }}
-
 
 <div class="parent">
     {% for manga in lastManga %}
@@ -41,13 +39,31 @@ Faire un CRUD dans l'espace gestion de compte #}
 
     <div class="manga">
         <a class="img" href="#"><img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""></a>
+
         <div class="second">
-            <a href="#"><h3>{{ manga.title }}</h3></a> 
+
+            <a href="#">
+                <h3>{{ manga.title }}</h3>
+            </a>
+
             <div class="chapterList">
+
                 {# Boucle for avec des a pour chaque chapitre #}
+
+                {% for chapter in manga.chapters|reverse %}
+
+                {% if loop.index <= 4 %} 
+
+                <a href="#">{{ chapter.title}}  </a> 
+
+                {% endif %}
+
+                {% endfor %}
+
             </div>
+
         </div>
-      
+
 
 
         {# <p> {{manga.description|raw }} </p> #}

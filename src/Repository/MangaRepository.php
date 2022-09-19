@@ -39,6 +39,16 @@ class MangaRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByLastChapterAdded(int $nbMangas): array
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('App\Entity\Chapter', 'c', 'WITH', 'c.manga = m.id')
+            ->orderBy('c.date_uploads', 'DESC')
+            ->setMaxResults($nbMangas)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    public function findOneBySomeField($value): ?Manga
     //    {
     //        return $this->createQueryBuilder('m')

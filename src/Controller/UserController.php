@@ -21,16 +21,15 @@ class UserController extends AbstractController
     public function index(CategorieRepository  $categorieRepository, ChapterRepository  $ChapterRepository, MangaRepository $mangaRepository): Response
     {
 
+        // ajouter un chapitre à un autre manga => vérifier si ça s'ajoute bien
+        // ajouter un chapitre au premier manga (déjà présent) => vérifier si le manga n'apparaît pas deux fois
+
         $list = $categorieRepository->findAll(); // select * from categorie
-        $lastManga = $mangaRepository->findBy([], ['id' => 'DESC'], 9);
-        foreach ($lastManga as $manga) {
-            $lastChapter = $ChapterRepository->findByAndSort(['id' => $manga->getId()]);
-        }
 
         return $this->render('user/index.html.twig', [
             "listCategorie" => $list,
-            'lastManga' => $lastManga,
-            'lastChapter' => $lastChapter,
+            'lastManga' => $mangaRepository->findByLastChapterAdded(9),
+
 
         ]);
     }
