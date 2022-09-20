@@ -1,0 +1,26 @@
+.manga .img {
+  display: flex;
+  justify-content: center;
+  padding: 2px 0;
+}
+.manga .second {
+  padding-left: 10px;
+}
+.manga .second h3 {
+  text-align: center;
+  padding: 4px 0;
+}
+.manga .second .description {
+  color: white;
+  padding-bottom: 1rem;
+}
+.manga .chapterList {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+}
+.manga .chapterList a {
+  padding: 4px;
+}
+
+/*# sourceMappingURL=manga.css.map */

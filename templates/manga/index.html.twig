@@ -1,9 +1,70 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/manga.css')}}">
+{% endblock %}
 {% block title %}Hello MangaController!{% endblock %}
 
 {% block body %}
 
+<div class="manga">
 
+    <a href="" class="img">
+        <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
+    </a>
+
+    <div class="second">
+
+        <h3>{{manga.title}}</h3>
+
+        <div class="description">
+            {{ manga.description|raw }}
+        </div>
+
+    </div>
+    <div class="chapterList">
+
+        {# Boucle for avec des a pour chaque chapitre #}
+
+        {% for chapter in manga.chapters|reverse %}
+
+        {% if loop.index %} <a href="#">{{ chapter.title}} </a>
+
+        {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+</div>
+<div class="manga">
+
+    <div class="comment">
+        <div class="col-md-6">
+            {{ form_start(commentForm) }}
+
+            <div class="subject">
+                {{ form_label(commentForm.subject) }}
+                {{ form_widget(commentForm.subject) }}
+                <div class="form-error">
+                    {{ form_errors(commentForm.subject) }}
+                </div>
+            </div>
+
+            <div class="content">
+                {{ form_label(commentForm.content) }}
+                {{ form_widget(commentForm.content) }}
+                <div class="form-error">
+                    {{ form_errors(commentForm.content) }}
+                </div>
+            </div>
+
+            
+            <a type="submit" href="#">Valider</a>
+
+            {{ form_end(commentForm) }}
+    </div>
+
+</div>
 
 {% endblock %}

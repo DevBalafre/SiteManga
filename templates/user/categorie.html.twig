@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/cate.css')}}">
+{% endblock %}
+{% block body %}
+
+<div class="manga">
+    {% for categorie in listCategorie %}
+    <a href="#">
+        {{categorie.title}}
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

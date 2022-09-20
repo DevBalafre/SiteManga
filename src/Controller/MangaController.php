@@ -13,33 +13,33 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\User;
 
 class MangaController extends AbstractController
 {
     /**
      * @Route("/manga/{id}", name="app_manga")
      */
-    public function index( MangaRepository $mangaRepository,Request $request, ManagerRegistry $doctrine, CommentRepository $commentsRepository, ChapterRepository $chapterRepository): Response
+    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, CommentRepository $commentsRepository, ChapterRepository $chapterRepository): Response
     {
-        $comment = New Comment();
-        $form = $this->createForm( CommentsType::class, $comment);
+        $comment = new Comment();
+        $form = $this->createForm(CommentsType::class, $comment);
         $form->handleRequest($request);
-        $manga = new Manga();
-        $manga = $mangaRepository ->findOneBy(['id'=>$request->get('id')]);
+        $manga = $mangaRepository->findOneBy(['id' => $id]);
         if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUser($this->getUser());
+            $comment->setManga($manga);
+            $comment->setDateCreation(new \DateTime());
             $manager = $doctrine->getManager();
             $manager->persist($comment);
             $manager->flush();
-
         }
         $listComments = $commentsRepository->findByAndSort();
         $listChapter = $chapterRepository->findAll();
         return $this->render('manga/index.html.twig', [
             'listComments' => $listComments,
             'commentForm' => $form->createView(),
-            'listChapter' => $listChapter
-
+            'listChapter' => $listChapter,
+            'manga' => $manga
         ]);
     }
 }

@@ -6,16 +6,14 @@
   display: flex;
   padding: 0.75rem 0;
   border: 1px solid transparent;
-  border-radius: 3px;
   margin-bottom: 1rem;
 }
 .parent .manga .img {
   max-width: 35%;
 }
 .parent .manga .img img {
-  max-width: 100%;
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 .parent .manga .second {

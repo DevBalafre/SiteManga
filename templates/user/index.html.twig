@@ -38,11 +38,13 @@ Faire un CRUD dans l'espace gestion de compte #}
 
 
     <div class="manga">
-        <a class="img" href="/manga/{{ manga.id }}"><img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""></a>
+        <a class="img" href="{{ path('app_manga', {'id': manga.id}) }}">
+            <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
+        </a>
 
         <div class="second">
 
-            <a href="/manga/{{ manga.id }}">
+            <a href="{{ path('app_manga', {'id': manga.id}) }}">
                 <h3>{{ manga.title }}</h3>
             </a>
 
@@ -52,13 +54,11 @@ Faire un CRUD dans l'espace gestion de compte #}
 
                 {% for chapter in manga.chapters|reverse %}
 
-                {% if loop.index <= 4 %} 
+                {% if loop.index <= 4 %} <a href="#">{{ chapter.title}} </a>
 
-                <a href="#">{{ chapter.title}}  </a> 
+                    {% endif %}
 
-                {% endif %}
-
-                {% endfor %}
+                    {% endfor %}
 
             </div>
 
@@ -66,7 +66,7 @@ Faire un CRUD dans l'espace gestion de compte #}
 
 
 
-        {# <p> {{manga.description|raw }} </p> #}
+        
 
     </div>
 

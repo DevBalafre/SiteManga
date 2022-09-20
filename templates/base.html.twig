@@ -35,8 +35,8 @@
                 <h1>LOGO</h1>
             </a>
             <ul class="navbar__links">
-                <li class="navbar__link first"><a href="#">Categorie</a></li>
-                <li class="navbar__link four"><a href="#">Contact</a></li>
+                <li class="navbar__link first"><a href="{{path('app_categorie')}}">Categorie</a></li>
+                <li class="navbar__link four"><a href="{{path('app_contact')}}">Contact</a></li>
                 {% if app.user %}
                 <li class=" navbar__link third"> <a href="#"> Bonjour : {{app.user.pseudo}}</a></li>
                 {% else %}

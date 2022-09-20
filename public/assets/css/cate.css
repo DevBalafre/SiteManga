@@ -1,0 +1,11 @@
+.manga {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.manga a {
+  width: 49%;
+  color: white;
+}
+
+/*# sourceMappingURL=cate.css.map */

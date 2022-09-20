@@ -29,4 +29,31 @@ class UserController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/categorie", name="app_categorie")
+     */
+    public function AllCat(CategorieRepository  $categorieRepository): Response
+    {
+
+
+        $list = $categorieRepository->findAll(); // select * from categorie
+        return $this->render('user/categorie.html.twig', [
+            "listCategorie" => $list, 
+            // Trier en Asc orderBy('c.title', 'ASC')
+
+        ]);
+    }
+    /**
+     * @Route("/contact", name="app_contact")
+     */
+    public function contact(CategorieRepository  $categorieRepository): Response
+    {
+
+        $list = $categorieRepository->findAll(); // select * from categorie
+        return $this->render('user/categorie.html.twig', [
+            "listCategorie" => $list,
+
+        ]);
+    }
+
 }
