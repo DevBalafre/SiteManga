@@ -56,6 +56,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->add($user, true);
     }
 
+    public function findAllAndComment(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('App\Entity\Comment', 'c', 'WITH', 'c.user= m.id')
+            ->orderBy('c.date_creation', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

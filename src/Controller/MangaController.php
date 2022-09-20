@@ -5,9 +5,10 @@ namespace App\Controller;
 use App\Entity\Manga;
 use App\Entity\Comment;
 use App\Form\CommentsType;
+use App\Repository\UserRepository;
+use App\Repository\MangaRepository;
 use App\Repository\ChapterRepository;
 use App\Repository\CommentRepository;
-use App\Repository\MangaRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class MangaController extends AbstractController
     /**
      * @Route("/manga/{id}", name="app_manga")
      */
-    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, CommentRepository $commentsRepository, ChapterRepository $chapterRepository): Response
+    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, UserRepository $userRepository, ChapterRepository $chapterRepository): Response
     {
         $comment = new Comment();
         $form = $this->createForm(CommentsType::class, $comment);
@@ -33,7 +34,7 @@ class MangaController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
         }
-        $listComments = $commentsRepository->findByAndSort();
+        $listComments = $userRepository->findAllAndComment();
         $listChapter = $chapterRepository->findAll();
         return $this->render('manga/index.html.twig', [
             'listComments' => $listComments,
@@ -41,5 +42,6 @@ class MangaController extends AbstractController
             'listChapter' => $listChapter,
             'manga' => $manga
         ]);
+
     }
 }
