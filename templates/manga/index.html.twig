@@ -39,32 +39,45 @@
 </div>
 <div class="manga">
 
-    <div class="comment">
-        <div class="col-md-6">
-            {{ form_start(commentForm) }}
+    <div class="comment ">
 
-            <div class="subject">
-                {{ form_label(commentForm.subject) }}
-                {{ form_widget(commentForm.subject) }}
-                <div class="form-error">
-                    {{ form_errors(commentForm.subject) }}
-                </div>
+        {{ form_start(commentForm) }}
+
+        <div class="champ">
+            {{ form_label(commentForm.subject) }}
+            {{ form_widget(commentForm.subject) }}
+            <div class="form-error">
+                {{ form_errors(commentForm.subject) }}
             </div>
+        </div>
 
-            <div class="content">
-                {{ form_label(commentForm.content) }}
-                {{ form_widget(commentForm.content) }}
-                <div class="form-error">
-                    {{ form_errors(commentForm.content) }}
-                </div>
+        <div class="champ">
+            {{ form_label(commentForm.content) }}
+            {{ form_widget(commentForm.content) }}
+            <div class="form-error">
+                {{ form_errors(commentForm.content) }}
             </div>
+        </div>
 
-            
-            <a type="submit" href="#">Valider</a>
+        <div class="champBtn">
 
-            {{ form_end(commentForm) }}
+            <button class="aButton" type="submit">Valider </button>
+        </div>
+
+        {{ form_end(commentForm) }}
     </div>
 
+
+
+
+
 </div>
+{% for comment in listComments %}
+<div class="manga">
+   
+
+</div>
+
+{% endfor %}
 
 {% endblock %}

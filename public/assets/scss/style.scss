@@ -35,6 +35,18 @@ body {
 a{
     text-decoration: none;
 }
+.aButton{
+    background-color: rgb(22, 21, 29);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+  
+}
 h1, h2, h3{
     color:#FFF;
 }
@@ -47,7 +59,7 @@ h1, h2, h3{
   display:flex;
   align-items:center; 
   justify-content:space-between;   
-  padding:10px;
+  padding:10px ;
   font-size:1.1rem;
   background:var(--navbar-bg-color);
   color:var(--navbar-color);
