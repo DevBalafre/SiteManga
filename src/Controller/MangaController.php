@@ -20,20 +20,25 @@ class MangaController extends AbstractController
     /**
      * @Route("/manga/{id}", name="app_manga")
      */
-    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, UserRepository $userRepository, ChapterRepository $chapterRepository): Response
+    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, UserRepository $userRepository, ChapterRepository $chapterRepository, CommentRepository $commentRepository): Response
     {
         $comment = new Comment();
         $form = $this->createForm(CommentsType::class, $comment);
         $form->handleRequest($request);
         $manga = $mangaRepository->findOneBy(['id' => $id]);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser());
+            
+            $comment->setUser($this->getUser()); // recupération du User
             $comment->setManga($manga);
-            $comment->setDateCreation(new \DateTime());
+            $comment->setDateCreation(new \DateTime()); // récupération de la date
             $manager = $doctrine->getManager();
             $manager->persist($comment);
-            $manager->flush();
+            $manager->flush();        
+            return $this->redirectToRoute('app_manga', ['id' =>$id]);   // vider le champs de formulaires          
+
         }
+
         $listComments = $userRepository->findAllAndComment();
         $listChapter = $chapterRepository->findAll();
         return $this->render('manga/index.html.twig', [

@@ -43,17 +43,6 @@ class UserController extends AbstractController
 
         ]);
     }
-    /**
-     * @Route("/contact", name="app_contact")
-     */
-    public function contact(CategorieRepository  $categorieRepository): Response
-    {
-
-        $list = $categorieRepository->findAll(); // select * from categorie
-        return $this->render('user/categorie.html.twig', [
-            "listCategorie" => $list,
-
-        ]);
-    }
+   
 
 }

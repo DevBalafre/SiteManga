@@ -36,12 +36,12 @@
             </a>
             <ul class="navbar__links">
                 <li class="navbar__link first"><a href="{{path('app_categorie')}}">Categorie</a></li>
-                <li class="navbar__link four"><a href="{{path('app_contact')}}">Contact</a></li>
+                <li class="navbar__link second"><a href="{{path('app_contact')}}">Contact</a></li>
                 {% if app.user %}
                 <li class=" navbar__link third"> <a href="#"> Bonjour : {{app.user.pseudo}}</a></li>
                 {% else %}
                 <li class="navbar__link third"><a href="{{path('app_register')}}">Incription</a></li>
-                <li class="navbar__link second"><a href="{{path('app_login')}} ">Connexion</a></li>
+                <li class="navbar__link four"><a href="{{path('app_login')}} ">Connexion</a></li>
                 {% endif %}
             </ul>
             <button class="burger">

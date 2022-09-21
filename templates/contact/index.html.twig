@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+
+{{form_start(contactForm)}}
+<div class="manga">
+
+    <div class="row">
+
+        <div class="col-6">
+            {{form_row(contactForm.email)}}
+        </div>
+
+        <div class="col-6">
+            {{form_row(contactForm.sujet)}}
+        </div>
+
+    </div>
+   
+    <div class="row">
+
+        <div class="col-12">
+            {{form_row(contactForm.message)}}
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-12">
+            {{form_row(contactForm.fichier)}}
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <button type="submit" class="aButton"> Envoyer</button>
+    </div>
+
+</div>
+
+{{form_end(contactForm)}}
+
+
+
+
+{% endblock %}
