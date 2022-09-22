@@ -1,9 +1,11 @@
 .manga {
     padding: 10px 0;
     margin: 2px 0;
-    p{
+
+    p {
         color: white;
     }
+
     .img {
         display: flex;
         justify-content: center;
@@ -26,39 +28,45 @@
             padding-bottom: 1rem;
         }
 
-        
+
     }
+
     .chapterList {
         display: flex;
         flex-wrap: wrap;
         padding-left: 10px;
 
         a {
-            
-            padding: 4px ;
+
+            padding: 4px;
         }
     }
-    .comment{
+
+    .commentForm {
         display: flex;
         justify-content: center;
-        form{
+
+        form {
             width: 90%;
-            .champ{
+
+            .champ {
                 margin: 10px 0;
-                
+
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 color: white;
-                input{
+
+                input {
                     width: 100%;
                 }
-                 textarea{
+
+                textarea {
                     width: 100%;
                 }
             }
-            
-            .champBtn{
+
+            .champBtn {
                 margin: 10px 0;
                 display: flex;
                 flex-direction: column;
@@ -66,31 +74,77 @@
                 color: white;
             }
         }
-        
+
+    }
+
+}
+
+.comments {
+    background-color: rgb(34, 34, 34);
+    border-radius: 3px;
+    color: white;
+    padding: 10px 0 10px 10px;
+    border: 1px solid rgb(22, 21, 29);
+
+    .commentTop {
+
+        .commentMid {
+            display: flex;
+
+            p {
+                padding-right: 10px;
+            }
+        }
+
+
     }
 }
-@media screen and (min-width:768px){
-    .manga{
+
+@media screen and (min-width:768px) {
+    .manga {
         display: flex;
         flex-wrap: wrap;
         padding: 10px;
         justify-content: space-evenly;
-        .img{
+
+        .img {
             padding: 10px;
             width: 40%;
+
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
         }
-        .second{
+
+        .second {
             padding: 10px;
             width: 45%;
-            
+
         }
-        .comment{
+
+        .commentForm {
             width: 90%;
+        }
+
+
+    }
+
+    .comments {
+        display: flex;
+        padding-top: 20px;
+
+        .commentTop {
+            text-align: left;
+            border-right: 1px solid rgb(22, 21, 29);
+
+            .commentMid {
+                text-align: left;
+            }
+        }
+        p{
+            padding-left: 10px;
         }
     }
 }

@@ -37,16 +37,13 @@
     flex-wrap: wrap;
   }
   .parent .manga {
-    max-width: 25.5%;
+    max-width: 45.5%;
   }
   .parent .manga .second {
     padding-left: 10px;
   }
   .parent .manga .second h3 {
     font-size: 1.25rem;
-  }
-  .parent .manga .img img {
-    max-width: 45%;
   }
 }
 

@@ -29,32 +29,46 @@
 .manga .chapterList a {
   padding: 4px;
 }
-.manga .comment {
+.manga .commentForm {
   display: flex;
   justify-content: center;
 }
-.manga .comment form {
+.manga .commentForm form {
   width: 90%;
 }
-.manga .comment form .champ {
+.manga .commentForm form .champ {
   margin: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
 }
-.manga .comment form .champ input {
+.manga .commentForm form .champ input {
   width: 100%;
 }
-.manga .comment form .champ textarea {
+.manga .commentForm form .champ textarea {
   width: 100%;
 }
-.manga .comment form .champBtn {
+.manga .commentForm form .champBtn {
   margin: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+}
+
+.comments {
+  background-color: rgb(34, 34, 34);
+  border-radius: 3px;
+  color: white;
+  padding: 10px 0 10px 10px;
+  border: 1px solid rgb(22, 21, 29);
+}
+.comments .commentTop .commentMid {
+  display: flex;
+}
+.comments .commentTop .commentMid p {
+  padding-right: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -77,8 +91,22 @@
     padding: 10px;
     width: 45%;
   }
-  .manga .comment {
+  .manga .commentForm {
     width: 90%;
+  }
+  .comments {
+    display: flex;
+    padding-top: 20px;
+  }
+  .comments .commentTop {
+    text-align: left;
+    border-right: 1px solid rgb(22, 21, 29);
+  }
+  .comments .commentTop .commentMid {
+    text-align: left;
+  }
+  .comments p {
+    padding-left: 10px;
   }
 }
 

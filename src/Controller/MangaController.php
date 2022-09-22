@@ -28,25 +28,23 @@ class MangaController extends AbstractController
         $manga = $mangaRepository->findOneBy(['id' => $id]);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $comment->setUser($this->getUser()); // recupération du User
             $comment->setManga($manga);
             $comment->setDateCreation(new \DateTime()); // récupération de la date
             $manager = $doctrine->getManager();
             $manager->persist($comment);
-            $manager->flush();        
-            return $this->redirectToRoute('app_manga', ['id' =>$id]);   // vider le champs de formulaires          
+            $manager->flush();
+            return $this->redirectToRoute('app_manga', ['id' => $id, '_fragment' => 'comments']);   // vider le champs de formulaires          
 
         }
 
-        $listComments = $userRepository->findAllAndComment();
         $listChapter = $chapterRepository->findAll();
         return $this->render('manga/index.html.twig', [
-            'listComments' => $listComments,
+            // 'listComments' => $userRepository->findAllAndComment(),
             'commentForm' => $form->createView(),
             'listChapter' => $listChapter,
             'manga' => $manga
         ]);
-
     }
 }

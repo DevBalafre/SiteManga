@@ -39,7 +39,7 @@
 </div>
 <div class="manga">
 
-    <div class="comment ">
+    <div class="commentForm ">
 
         {{ form_start(commentForm) }}
 
@@ -67,22 +67,25 @@
         {{ form_end(commentForm) }}
     </div>
 
-
-
-
-
 </div>
 
-{% for comment in listComments %}
-<div class="manga">
-    
+{% for comment in manga.comments|reverse %}
+<div class="comments" id="comments">
 
-    <p>{{comment.pseudo }}</p>
+    <div class="commentTop">
 
 
-    
+        <p> {{comment.subject}}</p>
 
-   
+        <div class="commentMid">
+            <p>{{comment.dateCreation.format('j/M/Y ')}}</p>
+            <p>{{ comment.user.pseudo }}</p>
+            
+        </div>
+
+        
+    </div>
+    <p>{{comment.content}}</p>
 
 </div>
 {% endfor %}
