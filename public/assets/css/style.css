@@ -50,6 +50,30 @@ a {
   border-radius: 4px;
 }
 
+/*  Alert */
+.alert {
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.alert-error {
+  background-color: rgb(255, 146, 146);
+  color: white;
+}
+
+.alert-info {
+  background-color: rgb(49, 128, 255);
+  color: white;
+}
+
+.alert-succes {
+  background-color: rgba(184, 255, 166, 0.808);
+  color: black;
+}
+
 h1, h2, h3 {
   color: #FFF;
 }
