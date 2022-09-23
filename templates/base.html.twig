@@ -39,6 +39,7 @@
                 <li class="navbar__link second"><a href="{{path('app_contact')}}">Contact</a></li>
                 {% if app.user %}
                 <li class=" navbar__link third"> <a href="{{path('app_crud')}}"> Bonjour : {{app.user.pseudo}}</a></li>
+                <li class=" navbar__link third"> <a href="{{path('app_logout')}}">Déconnexion</a></li>
                 {% else %}
                 <li class="navbar__link third"><a href="{{path('app_register')}}">Incription</a></li>
                 <li class="navbar__link four"><a href="{{path('app_login')}} ">Connexion</a></li>

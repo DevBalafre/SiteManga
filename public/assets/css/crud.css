@@ -1,0 +1,14 @@
+.manga {
+  padding: 10px;
+  text-align: center;
+}
+.manga .buttonForm {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.manga .buttonForm button {
+  max-width: 30%;
+  margin-right: 10px;
+}
+
+/*# sourceMappingURL=crud.css.map */

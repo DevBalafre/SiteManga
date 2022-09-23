@@ -48,6 +48,7 @@ a {
   display: inline-block;
   font-size: 16px;
   border-radius: 4px;
+  margin-top: 10px;
 }
 
 /*  Alert */
@@ -81,6 +82,24 @@ h1, h2, h3 {
 .manga {
   background-color: rgb(34, 34, 34);
   border-radius: 3px;
+  padding: 10px 0;
+  color: white;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+}
+form div label {
+  padding: 7px 0;
+}
+form div input {
+  padding: 7px 0;
 }
 
 /* Navbar */

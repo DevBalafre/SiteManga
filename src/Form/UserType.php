@@ -4,9 +4,12 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UserType extends AbstractType
 {
@@ -14,15 +17,12 @@ class UserType extends AbstractType
     {
         $builder
             ->add('pseudo')
-            ->add('email')
-            ->add('password')
-            // ->add('password_confirmation') Vérification que les mdp soit identique
-            ->add("submit", SubmitType::class, [
-                "label"=>"Valider",
-                "attr"=>[
-                    "class"=>"btn btn-primary mt-4"
-
-                ]
+            ->add('email', EmailType::class)
+            ->add('plainPassword', RepeatedType::class, [
+                'mapped' => false,
+                'type' => PasswordType::class,
+                'first_options' => array('label' => 'Mot de passe'),
+                'second_options' => array('label' => 'Confirmation du mot de passe'),
             ])
         ;
     }

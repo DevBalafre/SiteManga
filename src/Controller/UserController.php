@@ -46,6 +46,16 @@ class UserController extends AbstractController
         ]);
     }
     /**
+     * @Route("/profil", name="app_profil")
+     */
+    public function profil(){
+        return $this->render('user/profil.html.twig');
+    }
+
+
+
+
+    /**
      * @Route("/crud", name="app_crud")
      */
     public function crud(Request $request, ManagerRegistry $doctrine): Response
@@ -59,6 +69,7 @@ class UserController extends AbstractController
             $manager = $doctrine->getManager();
             $manager->persist($user);
             $manager->flush();
+            $this->addFlash('message', 'Profile mis à jour');
             // lorsque je sauvegarde la modif je fait une redirection
             return $this->redirectToRoute("app_user");
         }
