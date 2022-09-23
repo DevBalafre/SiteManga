@@ -10,6 +10,7 @@
 }
 .parent .manga .img {
   max-width: 35%;
+  margin: 0 10px;
 }
 .parent .manga .img img {
   width: 100%;

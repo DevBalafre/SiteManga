@@ -2,3 +2,12 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('assets/css/profil.css')}}">
 {% endblock %}
+{% block body %}
+    <div class="manga">
+        <div> {{ app.user.pseudo }} </div>
+        <div> {{app.user.email}} </div>
+        <div>
+            <a href="{{path('app_crud')}}">Modifier le profil</a>
+        </div>
+    </div>
+{% endblock body %}
