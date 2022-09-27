@@ -1,9 +1,13 @@
 .manga{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    a{
-        width: 49%;
-        color: white;
+
+    .first{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        a{
+            width: 49%;
+            color: white;
+        }
     }
+    
 }

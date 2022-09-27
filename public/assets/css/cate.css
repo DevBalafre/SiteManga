@@ -1,9 +1,9 @@
-.manga {
+.manga .first {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.manga a {
+.manga .first a {
   width: 49%;
   color: white;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\User;
 use App\Entity\Manga;
 use App\Form\UserType;
@@ -31,24 +32,14 @@ class UserController extends AbstractController
 
         ]);
     }
-    /**
-     * @Route("/categorie", name="app_categorie")
-     */
-    public function AllCat(CategorieRepository  $categorieRepository): Response
-    {
 
+    
 
-        $list = $categorieRepository->findAll(); // select * from categorie
-        return $this->render('user/categorie.html.twig', [
-            "listCategorie" => $list, 
-            // Trier en Asc orderBy('c.title', 'ASC')
-
-        ]);
-    }
     /**
      * @Route("/profil", name="app_profil")
      */
-    public function profil(){
+    public function profil()
+    {
         return $this->render('user/profil.html.twig');
     }
 
@@ -63,8 +54,8 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()){
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
             $manager = $doctrine->getManager();
             $manager->persist($user);
@@ -73,12 +64,10 @@ class UserController extends AbstractController
             // lorsque je sauvegarde la modif je fait une redirection
             return $this->redirectToRoute("app_user");
         }
-        
+
         return $this->render('user/crud.html.twig', [
             'form' => $form->createView()
 
         ]);
     }
-   
-
 }
