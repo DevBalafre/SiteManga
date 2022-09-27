@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/homepage.css')}}">
 {% endblock %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %} Only Scan{% endblock %}
 
 {% block body %}
 
@@ -30,7 +30,7 @@
 
                 {% for chapter in manga.chapters|reverse %}
 
-                {% if loop.index <= 4 %} <a href="#">{{ chapter.title}} </a>
+                {% if loop.index <= 4 %} <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{ chapter.title}} </a>
 
                     {% endif %}
 

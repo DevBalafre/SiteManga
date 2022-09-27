@@ -1,5 +1,17 @@
 .manga {
   color: white;
 }
+.manga .CGU div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.manga .CGU div label {
+  padding-left: 10px;
+  color: white;
+}
+.manga .input {
+  margin: 10px 0;
+}
 
 /*# sourceMappingURL=register.css.map */

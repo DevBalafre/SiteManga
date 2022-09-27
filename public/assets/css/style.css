@@ -38,6 +38,10 @@ a {
   text-decoration: none;
 }
 
+.cadre {
+  padding: 0 10px;
+}
+
 .aButton {
   background-color: rgb(22, 21, 29);
   border: none;
@@ -244,7 +248,7 @@ form div input {
 /*  Medium device  */
 @media screen and (min-width: 768px) {
   .navbar .logo {
-    width: 25%;
+    width: 15%;
   }
   .navbar .navbar__link > a::after {
     display: block;

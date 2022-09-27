@@ -20,7 +20,7 @@ class MangaController extends AbstractController
     /**
      * @Route("/manga/{id}", name="app_manga")
      */
-    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, UserRepository $userRepository, ChapterRepository $chapterRepository, CommentRepository $commentRepository): Response
+    public function index(int $id, MangaRepository $mangaRepository, Request $request, ManagerRegistry $doctrine, UserRepository $userRepository, ChapterRepository $chapterRepository): Response
     {
         $comment = new Comment();
         $form = $this->createForm(CommentsType::class, $comment);
@@ -41,10 +41,24 @@ class MangaController extends AbstractController
 
         $listChapter = $chapterRepository->findAll();
         return $this->render('manga/index.html.twig', [
-            // 'listComments' => $userRepository->findAllAndComment(),
             'commentForm' => $form->createView(),
             'listChapter' => $listChapter,
             'manga' => $manga
+        ]);
+    }
+    /**
+     * 
+     * @Route("/chap/{id}", name="app_Chap")
+     */
+    public function Chap(ChapterRepository $chapterRepository,int $id): Response
+    {
+        $chapImg= $chapterRepository->findBy(['id' => $id]);
+
+        return $this->render('manga/detail.html.twig', [
+           'chapImg' => $chapImg,
+
+
+           
         ]);
     }
 }

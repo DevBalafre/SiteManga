@@ -28,7 +28,7 @@ class UserController extends AbstractController
          $lastManga = $paginatorInterface->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            1
+            9
          );
         $list = $categorieRepository->findAll(); // select * from categorie
 

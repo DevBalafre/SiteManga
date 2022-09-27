@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/chap.css')}}">
+{% endblock %}
+{# {% block title %} {{manga.title ~ chapter.title}} {% endblock %} #}
+{% block body %}
+<div class="manga">
+    {% for chapter in chapImg %}
+    {{ chapter.title}}
+    {% for image in chapter.images %}
+
+    {% if loop.index %}    
+     <img src=" {{ asset('uploads/imagesChapter/' ~ chapter.imagesChapter)  }} " alt="">
+
+    {% endif %}
+
+    {% endfor %}
+  
+    {% endfor %}
+    
+   
+    </div>
+{% endblock %}

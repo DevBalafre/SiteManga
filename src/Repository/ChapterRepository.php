@@ -39,20 +39,20 @@ class ChapterRepository extends ServiceEntityRepository
         }
     }
 
-   /**
-    * @return Chapter[] Returns an array of Chapter objects
-    */
-   public function findByandSort($value): array
-   {
-       return $this->createQueryBuilder('c')
-           ->andWhere('c.id = :id')
-           ->setParameter('id', $value)
-           ->orderBy('c.id', 'DESC')
-           ->setMaxResults(5)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+//    /**
+//     * @return Chapter[] Returns an array of Chapter objects
+//     */
+//    public function findByandSort($value): array
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.id = :id')
+//            ->setParameter('id', $value)
+//            ->orderBy('c.id', 'DESC')
+//            ->setMaxResults(5)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
 //    public function findOneBySomeField($value): ?Chapter
 //    {
