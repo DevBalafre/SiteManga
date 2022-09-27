@@ -5,31 +5,34 @@
 {% block body %}
 
 <div class="manga">
-    
+
     <div class="first">
         {% for categorie in listCategorie %}
-        <a href="{{path('app_tri', {'id': categorie.id}) }}">
+        <a class="img" href="{{path('app_tri', {'id': categorie.id}) }}">
             {{categorie.title}}
         </a>
         {% endfor %}
     </div>
-    
-   
+
+
 </div>
 
-<div class="manga">
-    {% if mangaTri is defined %}
-    {% for manga in mangaTri %}
 
-    <a href="{{path('app_tri', {'id': manga.id}) }}">
-        <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt=""> 
+{% if mangaTri is defined %}
+{% for manga in mangaTri %}
+<div class="manga">
+    <a class="img" href="{{path('app_manga', {'id': manga.id}) }}">
+        <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
     </a>
     <div class="second">
 
-        <a href="{{path('app_tri', {'id': manga.id}) }}">
+        <a href="{{path('app_manga', {'id': manga.id}) }}">
             <h3>{{ manga.title }}</h3>
         </a>
-
+        <div class="description">
+            {{ manga.description|raw }}
+        </div>
+    </div>
         <div class="chapterList">
 
             {# Boucle for avec des a pour chaque chapitre #}
@@ -44,13 +47,15 @@
 
         </div>
 
-    </div>
+   
+</div>
     {% else %}
     <p>Sélectionnez une catégorie</p>
-    {% endfor %}
 
-    {% endif %}
+{% endfor %}
+
+{% endif %}
 
 
-</div>
+
 {% endblock %}

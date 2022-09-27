@@ -1,13 +1,71 @@
 .manga{
+    margin: 10px;
 
+   
     .first{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
         a{
             width: 49%;
             color: white;
         }
+       img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
     }
-    
+    .second {
+        padding-left: 10px;
+
+        h3 {
+            padding: 5px 0;
+
+        }
+
+        .description {
+            padding-bottom: 1rem;
+        }
+
+
+    }
+
+    .chapterList {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 10px;
+
+        a {
+
+            padding: 4px;
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .manga {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        justify-content: space-evenly;
+        
+        .img {
+            padding: 10px;
+            width: 40%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .second {
+            padding: 10px;
+            width: 45%;
+
+        }
+    }
 }

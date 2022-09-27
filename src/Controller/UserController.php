@@ -2,33 +2,39 @@
 
 namespace App\Controller;
 
-use App\Entity\Categorie;
-use App\Entity\User;
-use App\Entity\Manga;
 use App\Form\UserType;
 use App\Repository\MangaRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface as PagerPaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class UserController extends AbstractController
 {
     /**
      * @Route("/", name="app_user")
      */
-    public function index(CategorieRepository  $categorieRepository, MangaRepository $mangaRepository): Response
+    public function index(CategorieRepository  $categorieRepository, MangaRepository $mangaRepository, Request $request,PagerPaginatorInterface $paginatorInterface): Response
     {
 
         // ajouter un chapitre à un autre manga => vérifier si ça s'ajoute bien
 
+        $donnees = $mangaRepository->findByLastChapterAdded();
 
+         $lastManga = $paginatorInterface->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            1
+         );
         $list = $categorieRepository->findAll(); // select * from categorie
+
         return $this->render('user/index.html.twig', [
             "listCategorie" => $list,
-            'lastManga' => $mangaRepository->findByLastChapterAdded(9),
+            'lastManga' => $lastManga
 
         ]);
     }

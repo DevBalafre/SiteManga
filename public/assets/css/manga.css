@@ -1,13 +1,6 @@
 .manga {
   margin: 2px 0;
-}
-.manga p {
   color: white;
-}
-.manga .img {
-  display: flex;
-  justify-content: center;
-  padding: 2px 0;
 }
 .manga .second {
   padding-left: 10px;
@@ -17,7 +10,6 @@
   padding: 4px 0;
 }
 .manga .second .description {
-  color: white;
   padding-bottom: 1rem;
 }
 .manga .chapterList {

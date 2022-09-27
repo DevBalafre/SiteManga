@@ -1,3 +1,6 @@
+.manga {
+  margin: 10px;
+}
 .manga .first {
   display: flex;
   flex-wrap: wrap;
@@ -6,6 +9,50 @@
 .manga .first a {
   width: 49%;
   color: white;
+}
+.manga .first img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.manga .second {
+  padding-left: 10px;
+}
+.manga .second h3 {
+  padding: 5px 0;
+}
+.manga .second .description {
+  padding-bottom: 1rem;
+}
+.manga .chapterList {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+}
+.manga .chapterList a {
+  padding: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .manga {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: space-evenly;
+  }
+  .manga .img {
+    padding: 10px;
+    width: 40%;
+  }
+  .manga .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .manga .second {
+    padding: 10px;
+    width: 45%;
+  }
 }
 
 /*# sourceMappingURL=cate.css.map */

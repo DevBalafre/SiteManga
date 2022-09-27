@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('assets/css/manga.css')}}">
-<link rel="stylesheet" href="{{asset('assets/css/homepage.css')}}">
 {% endblock %}
 {% block title %}Hello MangaController!{% endblock %}
 
@@ -15,7 +14,9 @@
 
     <div class="second">
 
-        <h3>{{manga.title}}</h3>
+        <a href="{{path('app_tri', {'id': manga.id}) }}">
+            <h3>{{ manga.title }}</h3>
+        </a>
 
         <div class="description">
             {{ manga.description|raw }}
