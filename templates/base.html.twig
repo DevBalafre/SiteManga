@@ -44,6 +44,9 @@
             <button class="burger">
                 <span class="bar"></span>
             </button>
+            {{ render(controller(
+                'App\\Controller\\UserController::searchBar'
+            )) }}
         </nav>
 
 

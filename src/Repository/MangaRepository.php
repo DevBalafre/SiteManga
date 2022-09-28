@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Manga;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\String_;
 
 /**
  * @extends ServiceEntityRepository<Manga>
@@ -48,13 +49,13 @@ class MangaRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //    public function findOneBySomeField($value): ?Manga
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+       public function search(string $searchedValue): array
+       {
+           return $this->createQueryBuilder('m')
+               ->andWhere('m.title LIKE :val')
+               ->setParameter(':val','%' . $searchedValue . '%')
+               ->getQuery()
+               ->getResult()
+           ;
+       }
 }

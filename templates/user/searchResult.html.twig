@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/search.css')}}">
+{% endblock %}
+
+{% block description %} Résultats de la recherche {{searchedValue}} {% endblock %}
+
+
+{% block title %} recherche {% endblock %}
+{% block breadcrump %}
+/
+<a href="{{ path('app_user') }}"> Mangas </a>
+/
+Recherche
+/
+{{ searchedValue }}
+{% endblock %}
+
+
+
+{% block body %}
+<div class="manga">
+    <h1>Recherche : {{ searchedValue }} </h1>
+
+    {% for manga in mangas %}
+    <a class="img" href="{{ path('app_manga', {'id': manga.id}) }}">
+        <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
+        {{ manga.title }}
+    </a>
+     <br>
+
+    {% else %}
+    <p class="text-center "> Aucun réslutat </p>
+
+    {% endfor %}
+</div>
+{% endblock %}

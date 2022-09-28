@@ -6,11 +6,13 @@ use App\Form\UserType;
 use App\Repository\MangaRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Knp\Component\Pager\PaginatorInterface as PagerPaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface as PagerPaginatorInterface;
 
 
 class UserController extends AbstractController
@@ -18,18 +20,17 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="app_user")
      */
-    public function index(CategorieRepository  $categorieRepository, MangaRepository $mangaRepository, Request $request,PagerPaginatorInterface $paginatorInterface): Response
+    public function index(CategorieRepository  $categorieRepository, MangaRepository $mangaRepository, Request $request, PagerPaginatorInterface $paginatorInterface): Response
     {
+            
 
-        // ajouter un chapitre à un autre manga => vérifier si ça s'ajoute bien
+        $donnees = $mangaRepository->findByLastChapterAdded(); //Récupération des dernier chapitre 
 
-        $donnees = $mangaRepository->findByLastChapterAdded();
-
-         $lastManga = $paginatorInterface->paginate(
+        $lastManga = $paginatorInterface->paginate(  
             $donnees,
             $request->query->getInt('page', 1),
             9
-         );
+        );                                         //pagination avec un bundle
         $list = $categorieRepository->findAll(); // select * from categorie
 
         return $this->render('user/index.html.twig', [
@@ -39,7 +40,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    
+
 
     /**
      * @Route("/profil", name="app_profil")
@@ -74,6 +75,39 @@ class UserController extends AbstractController
         return $this->render('user/crud.html.twig', [
             'form' => $form->createView()
 
+        ]);
+    }
+
+    /**
+     * @Route("/search", name="search") 
+     */
+    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository): Response
+    {
+        $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
+        if ($searchedValue) {
+            $mangas = $mangaRepository->search($searchedValue);
+        }
+        return $this->render('user/searchResult.html.twig', [
+            'searchedValue' => $searchedValue,
+            'mangas' => $mangas
+        ]);
+    }
+
+    public function searchBar(): Response
+    {
+        $searchForm = $this->createFormBuilder()
+            ->setAction($this->generateUrl('search'))
+            ->add('search', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'minLength' => 3,
+                    'maxLength' => 25,
+                    'placeholder' => 'Recherche'
+                ]
+            ])
+            ->getForm();
+        return $this->render('user/searchForm.html.twig', [
+            'searchForm' => $searchForm->createView()
         ]);
     }
 }
