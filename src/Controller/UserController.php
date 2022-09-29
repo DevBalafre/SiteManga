@@ -31,6 +31,7 @@ class UserController extends AbstractController
             $request->query->getInt('page', 1),
             9
         );                                         //pagination avec un bundle
+
         $list = $categorieRepository->findAll(); // select * from categorie
 
         return $this->render('user/index.html.twig', [
@@ -49,8 +50,6 @@ class UserController extends AbstractController
     {
         return $this->render('user/profil.html.twig');
     }
-
-
 
 
     /**

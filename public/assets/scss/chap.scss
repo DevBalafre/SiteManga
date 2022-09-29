@@ -1,0 +1,76 @@
+.manga {
+    margin: 10px 0;
+    .abso {
+        position: relative;
+
+        .drop {
+            max-width: 300px;
+            height: 60px;
+            color: white;
+            border-radius: 5px;
+            background: rgb(22, 21, 29);
+            transition: height 0.4s ease-in-out;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            position: absolute;
+            right: 10px;
+
+            .bloc-top {
+                padding: 15px;
+                border: none;
+                outline: none;
+                font-size: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgb(22, 21, 29);
+                color: white;
+                cursor: pointer;
+                border-radius: 15px;
+                img {
+                    width: 20px;
+                }
+
+            }
+
+    
+
+        }
+    }
+    a{
+        color: white;
+        padding-bottom: 5px;
+    }
+    .actu{
+        color: wheat;
+    }
+
+    h3 {
+        max-width: 50%;
+        margin: 15px 10px ;
+    }
+
+    .img {
+        margin-top: 10px;
+        padding: 10px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+@media screen and (min-width:767.98px) {
+    .manga{
+
+        .img{
+            margin-left: auto;
+            margin-right: auto;
+            
+                width: 70%;
+                
+           
+        }
+    }
+    
+}

@@ -1,23 +1,56 @@
 {% extends 'base.html.twig' %}
+
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('assets/css/chap.css')}}">
 {% endblock %}
+
 {# {% block title %} {{manga.title ~ chapter.title}} {% endblock %} #}
+
 {% block body %}
+
 <div class="manga">
-   
-    
+    <div class="abso">
+        <div class="drop">
+            <button class="bloc-top">
+                <span>Chapitres</span>
+                <img src="{{asset('assets/img/25623.png')}}" alt="">
+            </button>
+            <div class="blocLink">
+                <ul>
+                    {% for chapter in chapters %}
+                    {% if chapter.id != currentChapter.id %}
+                    <li>
+                        <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{
+                            chapter.title }}</a>
+                        {% else %}
+                    </li>
+                    <span>{{ chapter.title }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
 
-    {% for chapter in chapImg.images %}
-    {{ chapter.title}}
-   
-
-    <img src=" {{ asset('uploads/imagesChapter/' ~ chapter.imagesChapter)  }} " alt="">
-
-   
-  
-    {% endfor %}
-    
-   
+        </div>
     </div>
+    <div>
+        <h3>{{ currentChapter.title }}</h3>
+        <div class="img">
+            {% for image in currentChapter.images %}
+            <img src="{{asset('uploads/imagesChapter/' ~ image.imagesChapter)}}" alt="Images de manga">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="manga">
+    <h1>Listes des chapitres</h1>
+    {% for chapter in chapters %}
+    {% if chapter.id != currentChapter.id %}
+    <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{
+        chapter.title }}</a>
+    {% else %}
+    <span class="actu">{{ chapter.title }}</span>
+    {% endif %}
+    {% endfor %}
+</div>
 {% endblock %}

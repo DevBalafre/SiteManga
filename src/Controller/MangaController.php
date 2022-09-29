@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Manga;
+use App\Entity\Chapter;
 use App\Entity\Comment;
 use App\Form\CommentsType;
 use App\Repository\UserRepository;
@@ -10,6 +11,7 @@ use App\Repository\MangaRepository;
 use App\Repository\ChapterRepository;
 use App\Repository\CommentRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,19 +48,24 @@ class MangaController extends AbstractController
             'manga' => $manga
         ]);
     }
+
     /**
-     * 
      * @Route("/chap/{id}", name="app_Chap")
      */
-    public function Chap(ChapterRepository $chapterRepository,int $id): Response
+    public function chap(Chapter $currentChapter, ChapterRepository $chapterRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $chapImg= $chapterRepository->findBy(['id' => $id]);
+
+        $chapters = $chapterRepository->findBy(['manga' => $currentChapter->getManga()]); // récupère tous les chapitres du manga en cours 
+
+        /* $chapters = $paginatorInterface->paginate(
+            $donnees,
+            $request->query->getInt('page', $chapter->getId()), // commence la pagination avec le chpitre cliqué
+            1 // un chapitre par page
+        ); */
 
         return $this->render('manga/detail.html.twig', [
-           'chapImg' => $chapImg,
-
-
-           
+            'currentChapter' => $currentChapter,
+            'chapters' => $chapters
         ]);
     }
 }

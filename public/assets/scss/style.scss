@@ -53,7 +53,7 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-top: 10px;
 
 }
@@ -68,17 +68,17 @@ a {
 }
 
 .alert-error {
-  background-color: rgb(255, 146, 146);
+  background-color: rgb(196, 61, 61);
   color: white;
 }
 
 .alert-info {
-  background-color: rgb(49, 128, 255);
+  background-color: rgb(25, 80, 170);
   color: white;
 }
 
 .alert-succes {
-  background-color: rgba(184, 255, 166, 0.808);
+  background-color: rgba(76, 201, 45, 0.808);
   color: black;
 }
 
@@ -91,7 +91,7 @@ h3 {
 
 .manga {
   background-color: rgb(34, 34, 34);
-  border-radius: 3px;
+  border-radius: 15px;
   padding: 10px;
   color: white;
 }
@@ -142,6 +142,7 @@ form {
 
 .navbar__links {
   display: flex;
+  z-index: 1;
 }
 
 .navbar__link {
@@ -222,7 +223,7 @@ form {
     display: block;
     width: 45px;
     height: 4px;
-    border-radius: 3px;
+    border-radius: 10px;
     background: var(--navbar-color);
     transition: all .5s ease-in-out;
   }
@@ -235,7 +236,7 @@ form {
     position: absolute;
     left: 0;
     background: var(--navbar-color);
-    border-radius: 3px;
+    border-radius: 10px;
     transition: all .5s ease-in-out;
   }
 

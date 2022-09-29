@@ -16,3 +16,19 @@ function toggleMenu () {
 }
 toggleMenu();
 
+
+  const drop = document.querySelector (".drop") ;
+  const btnDrop = document.querySelector (".bloc-top") ;
+  let toggleIndex =0;
+
+  btnDrop.addEventListener('click', (e) => {
+
+  if(toggleIndex===0){
+    drop.style.height = `${drop.scrollHeight}px`;
+    toggleIndex++;
+
+  }else{
+    drop.style.height = `${btnDrop.scrollHeight}px`;
+    toggleIndex--;
+  }
+})                 
