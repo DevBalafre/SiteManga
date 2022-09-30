@@ -31,4 +31,4 @@ toggleMenu();
     drop.style.height = `${btnDrop.scrollHeight}px`;
     toggleIndex--;
   }
-})                 
+})

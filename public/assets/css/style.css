@@ -92,6 +92,9 @@ h3 {
   padding: 10px;
   color: white;
 }
+.manga a {
+  color: white;
+}
 
 form {
   display: flex;
@@ -113,7 +116,7 @@ form div input {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px;
   font-size: 1.1rem;
   background: var(--navbar-bg-color);

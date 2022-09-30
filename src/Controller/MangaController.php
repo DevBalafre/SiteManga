@@ -52,20 +52,16 @@ class MangaController extends AbstractController
     /**
      * @Route("/chap/{id}", name="app_Chap")
      */
-    public function chap(Chapter $currentChapter, ChapterRepository $chapterRepository, PaginatorInterface $paginatorInterface, Request $request): Response
+    public function chap(Chapter $currentChapter, ChapterRepository $chapterRepository, MangaRepository $mangaRepository, Int $id): Response
     {
 
         $chapters = $chapterRepository->findBy(['manga' => $currentChapter->getManga()]); // récupère tous les chapitres du manga en cours 
-
-        /* $chapters = $paginatorInterface->paginate(
-            $donnees,
-            $request->query->getInt('page', $chapter->getId()), // commence la pagination avec le chpitre cliqué
-            1 // un chapitre par page
-        ); */
+        $manga = $mangaRepository->findOneBy(['id' => $id]);
 
         return $this->render('manga/detail.html.twig', [
             'currentChapter' => $currentChapter,
-            'chapters' => $chapters
+            'chapters' => $chapters,
+            'mangaTitle' => $manga 
         ]);
     }
 }

@@ -20,11 +20,11 @@
                     {% for chapter in chapters %}
                     {% if chapter.id != currentChapter.id %}
                     <li>
-                        <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{
-                            chapter.title }}</a>
+                        <a href="{{ path('app_Chap', {'id': chapter.id}) }}">
+                            {{ chapter.title }}</a>
                         {% else %}
                     </li>
-                    <span>{{ chapter.title }}</span>
+                    <span class="actu">{{ chapter.title }}</span>
                     {% endif %}
                     {% endfor %}
                 </ul>
@@ -32,25 +32,39 @@
 
         </div>
     </div>
+
     <div>
+        {% for manga in mangaTitle %}
+        <a href="{{path('app_manga', {'id': manga.id}) }}">
+            <h3>{{ manga.title }}</h3>
+        </a>
+        {% endfor %}
+
         <h3>{{ currentChapter.title }}</h3>
+
         <div class="img">
+
             {% for image in currentChapter.images %}
             <img src="{{asset('uploads/imagesChapter/' ~ image.imagesChapter)}}" alt="Images de manga">
             {% endfor %}
+
         </div>
+
     </div>
+
 </div>
 
 <div class="manga">
     <h1>Listes des chapitres</h1>
-    {% for chapter in chapters %}
-    {% if chapter.id != currentChapter.id %}
-    <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{
-        chapter.title }}</a>
-    {% else %}
-    <span class="actu">{{ chapter.title }}</span>
-    {% endif %}
-    {% endfor %}
+    <div class="listChap">
+        {% for chapter in chapters %}
+        {% if chapter.id != currentChapter.id %}
+        <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{
+            chapter.title }}</a>
+        {% else %}
+        <span class="actu">{{ chapter.title }}</span>
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

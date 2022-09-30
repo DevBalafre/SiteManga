@@ -36,12 +36,22 @@
 
         }
     }
+    h1{
+        text-align: center;
+    }
+    .listChap{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     a{
+        padding: 5px 15px 5px 0px ;
         color: white;
-        padding-bottom: 5px;
+       
     }
     .actu{
         color: wheat;
+        padding: 5px 15px 5px 0px ;
     }
 
     h3 {

@@ -31,12 +31,21 @@
 .manga .abso .drop .bloc-top img {
   width: 20px;
 }
+.manga h1 {
+  text-align: center;
+}
+.manga .listChap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .manga a {
+  padding: 5px 15px 5px 0px;
   color: white;
-  padding-bottom: 5px;
 }
 .manga .actu {
   color: wheat;
+  padding: 5px 15px 5px 0px;
 }
 .manga h3 {
   max-width: 50%;

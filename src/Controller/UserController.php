@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserPasswordType;
 use App\Form\UserType;
 use App\Repository\MangaRepository;
 use App\Repository\CategorieRepository;
@@ -13,7 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Knp\Component\Pager\PaginatorInterface as PagerPaginatorInterface;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
@@ -55,37 +57,49 @@ class UserController extends AbstractController
     /**
      * @Route("/crud", name="app_crud")
      */
-    public function crud(Request $request, ManagerRegistry $doctrine): Response
+    public function crud(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-            $manager = $doctrine->getManager();
-            $manager->persist($user);
-            $manager->flush();
-            $this->addFlash('message', 'Profile mis à jour');
-            // lorsque je sauvegarde la modif je fait une redirection
-            return $this->redirectToRoute("app_user");
+            if($hasher->isPasswordValid($user,$form->getData()->getPassword())){
+                $user = $form->getData();
+                $manager = $doctrine->getManager();
+                $manager->persist($user);
+                $manager->flush();
+                $this->addFlash('sucess', 'Profile mis à jour');
+                // lorsque je sauvegarde la modif je fait une redirection
+                return $this->redirectToRoute("app_user");
+            }else{
+                $this->addFlash('error', 
+                'Le mot de passe renseigné est incorect');
+            }
+
+          
         }
 
         return $this->render('user/crud.html.twig', [
             'form' => $form->createView()
-
         ]);
     }
 
     /**
      * @Route("/search", name="search") 
      */
-    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository): Response
+    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository,PagerPaginatorInterface $paginatorInterface, Request $request): Response
     {
         $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
         if ($searchedValue) {
-            $mangas = $mangaRepository->search($searchedValue);
+            $donnes = $mangaRepository->search($searchedValue);
         }
+
+        $mangas = $paginatorInterface->paginate(  
+            $donnes,
+            $request->query->getInt('page', 1),
+            9
+        ); 
         return $this->render('user/searchResult.html.twig', [
             'searchedValue' => $searchedValue,
             'mangas' => $mangas
@@ -107,6 +121,19 @@ class UserController extends AbstractController
             ->getForm();
         return $this->render('user/searchForm.html.twig', [
             'searchForm' => $searchForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/utlisateur/editPassword/{id}", name="search") 
+     */
+    public function editPassword(User $user, Request $request ): Response
+    {
+        $form = $this->createForm(UserPasswordType::class);
+        
+
+        return $this->render('user/editPassword.html.twig', [ 
+            'form'=> $form->createView(),
         ]);
     }
 }
