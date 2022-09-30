@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 namespace App\Form;
 
@@ -6,43 +6,72 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-
-use Symfony\Component\Validator\Constraints as Assert ;
-
+use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength;
 
 
-class UserPasswordType extends AbstractType{
+
+class UserPasswordType extends AbstractType
+{
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo')
-            ->add('email', EmailType::class)
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('plainPassword', PasswordType::class, [
+                'label' => 'Mot de passe actuel',
                 'mapped' => false,
-                'type' => PasswordType::class,
-                'first_options' => array('label' => 'Mot de passe'),
-                'second_options' => array('label' => 'Confirmation du mot de passe'),
+                'attr' => [
+                    'autocomplete' => 'new-password'
+                ]
             ])
-            ->add('newPassword', PasswordType::class,[
-                'attr'=> ['class'=>'form-control'] ,
-                'label'=> 'Nouveau mot de passe' ,
-                 'label_attr' => ['class'=>'form-labelmt-4'] ,
-                'constraints' => [ new Assert\NotBlank()] 
+            ->add('newPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les deux mots de passe ne correpondent pas ',
+                'mapped' => false,
+
+                'attr' => [
+                    'autocomplete' => 'new-password'
+
+                ],
+                'first_options' => [
+                    'label' => 'Nouveau mot de passe',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Vous devez entrer un mot de passe',
+                        ]),
+                        new PasswordStrength([
+                            'minLength' => 8,
+                            'tooShortMessage' => 'Le mot de passe doit contenir au moins 8 carctères',
+                            'minStrength' => 4,
+                            'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
+                        ])
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Confimez votre mot de passe',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Merci de confirmer le mot de passe'
+                        ])
+                    ]
+                ]
+
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Validez votre mot de passe',
+                'attr' => [
+                    'class' => 'buttonForm'
+                ]
+                
+
             ]);
-          
-               
-                                                                          
-        ;
     }
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+        $resolver->setDefaults([]);
     }
 }

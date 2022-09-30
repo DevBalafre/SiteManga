@@ -9,5 +9,8 @@
         <div>
             <a href="{{path('app_crud')}}">Modifier le profil</a>
         </div>
+        <div>
+            <a href="{{path('editPassword', {id: app.user.id})}}">Modifier le mot de passe</a>
+        </div>
     </div>
 {% endblock body %}

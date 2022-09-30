@@ -18,12 +18,7 @@ class UserType extends AbstractType
         $builder
             ->add('pseudo')
             ->add('email', EmailType::class)
-            ->add('plainPassword', RepeatedType::class, [
-                'mapped' => false,
-                'type' => PasswordType::class,
-                'first_options' => array('label' => 'Mot de passe'),
-                'second_options' => array('label' => 'Confirmation du mot de passe'),
-            ])
+            
         ;
     }
  

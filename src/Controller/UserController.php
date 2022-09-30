@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Knp\Component\Pager\PaginatorInterface as PagerPaginatorInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
@@ -24,11 +25,11 @@ class UserController extends AbstractController
      */
     public function index(CategorieRepository  $categorieRepository, MangaRepository $mangaRepository, Request $request, PagerPaginatorInterface $paginatorInterface): Response
     {
-            
+
 
         $donnees = $mangaRepository->findByLastChapterAdded(); //Récupération des dernier chapitre 
 
-        $lastManga = $paginatorInterface->paginate(  
+        $lastManga = $paginatorInterface->paginate(
             $donnees,
             $request->query->getInt('page', 1),
             9
@@ -64,7 +65,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($hasher->isPasswordValid($user,$form->getData()->getPassword())){
+           
                 $user = $form->getData();
                 $manager = $doctrine->getManager();
                 $manager->persist($user);
@@ -72,12 +73,7 @@ class UserController extends AbstractController
                 $this->addFlash('sucess', 'Profile mis à jour');
                 // lorsque je sauvegarde la modif je fait une redirection
                 return $this->redirectToRoute("app_user");
-            }else{
-                $this->addFlash('error', 
-                'Le mot de passe renseigné est incorect');
-            }
-
-          
+           
         }
 
         return $this->render('user/crud.html.twig', [
@@ -88,18 +84,18 @@ class UserController extends AbstractController
     /**
      * @Route("/search", name="search") 
      */
-    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository,PagerPaginatorInterface $paginatorInterface, Request $request): Response
+    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository, PagerPaginatorInterface $paginatorInterface, Request $request): Response
     {
         $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
         if ($searchedValue) {
             $donnes = $mangaRepository->search($searchedValue);
         }
 
-        $mangas = $paginatorInterface->paginate(  
+        $mangas = $paginatorInterface->paginate(
             $donnes,
             $request->query->getInt('page', 1),
             9
-        ); 
+        );
         return $this->render('user/searchResult.html.twig', [
             'searchedValue' => $searchedValue,
             'mangas' => $mangas
@@ -125,15 +121,33 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/utlisateur/editPassword/{id}", name="search") 
+     * @Route("/utlisateur/editPassword/{id}", name="editPassword") 
      */
-    public function editPassword(User $user, Request $request ): Response
+    public function editPassword(User $user, Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher): Response
     {
-        $form = $this->createForm(UserPasswordType::class);
-        
 
-        return $this->render('user/editPassword.html.twig', [ 
-            'form'=> $form->createView(),
+        $form = $this->createForm(UserPasswordType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($hasher->isPasswordValid($user, $form->get('plainPassword')->getData())) {
+                $manager = $doctrine->getManager();
+                $user->setPassword($hasher->hashPassword($user, $form->get('newPassword')->getData()));
+                $manager->flush();
+                $this->addFlash('sucess', 'Profile mis à jour');
+                // lorsque je sauvegarde la modif je fait une redirection
+                return $this->redirectToRoute("app_user");
+            } else {
+                $this->addFlash(
+                    'error',
+                    'Le mot de passe renseigné est incorect'
+                );
+            }
+        }
+
+
+        return $this->render('user/editPassword.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
