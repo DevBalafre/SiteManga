@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{asset('assets/css/search.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/manga.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/pagination.css')}}">
 {% endblock %}
 
 {% block description %} Résultats de la recherche {{searchedValue}} {% endblock %}
@@ -31,47 +31,44 @@ Recherche
 <div class="manga">
     <a class="img" href="{{ path('app_manga', {'id': manga.id}) }}">
         <img src="{{ asset('uploads/imageManga/' ~ manga.photoManga) }}" alt="">
-        
     </a>
 
-   
+    <div class="second">
 
-        
+        <a href="{{path('app_tri', {'id': manga.id}) }}">
+            <h3>{{ manga.title }}</h3>
+        </a>
 
-        <div class="second">
-
-            <a href="{{path('app_tri', {'id': manga.id}) }}">
-                <h3>{{ manga.title }}</h3>
-            </a>
-    
-            <div class="description">
-                {{ manga.description|raw }}
-            </div>
-    
+        <div class="description">
+            {{ manga.description|raw }}
         </div>
-        <div class="chapterList">
-    
-            {# Boucle for avec des a pour chaque chapitre #}
-    
-            {% for chapter in manga.chapters|reverse %}
-    
-            {% if loop.index <= 4 %} <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{ chapter.title}}  </a>
-    
+
+    </div>
+    <div class="chapterList">
+
+        {# Boucle for avec des a pour chaque chapitre #}
+
+        {% for chapter in manga.chapters|reverse %}
+
+        {% if loop.index <= 4 %} <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{ chapter.title}} </a>
+
             {% endif %}
-    
-            {% endfor %}
-    
-        </div>
 
-        
+            {% endfor %}
+
+    </div>
+
+
 </div>
-<div class="manga">
-    {{ knp_pagination_render(mangas) }}
-</div>
+
 {% else %}
 <div class="manga">
     <p class="text-center "> Aucun réslutat </p>
 </div>
 {% endfor %}
-
+<div class="manga">
+    <div class="pag">
+        {{knp_pagination_render(mangas)}}
+    </div>
+</div>
 {% endblock %}

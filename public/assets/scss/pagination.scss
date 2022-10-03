@@ -1,0 +1,31 @@
+.pag{
+    display: flex;
+        justify-content: center;
+    .pagination{
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+        width: 20%;
+        font-weight: bold;
+        .current{
+            color: wheat;
+        }
+    }
+}
+@media screen and (min-width:768px){
+    .pag{
+        .pagination{
+            width: 8%;
+        }
+    }
+    
+}
+
+@media screen and (min-width:1200px){
+    .pag{
+        .pagination{
+            width: 6%;
+        }
+    }
+    
+}

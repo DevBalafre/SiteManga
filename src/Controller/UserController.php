@@ -95,6 +95,7 @@ class UserController extends AbstractController
             $donnes,
             $request->query->getInt('page', 1),
             9
+
         );
         return $this->render('user/searchResult.html.twig', [
             'searchedValue' => $searchedValue,

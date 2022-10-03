@@ -13,7 +13,7 @@
         <div class="drop">
             <button class="bloc-top">
                 <span>Chapitres</span>
-                <img src="{{asset('assets/img/25623.png')}}" alt="">
+                <img src="{{asset('assets/img/25623.png')}}" alt="flêche déroulante">
             </button>
             <div class="blocLink">
                 <ul>
@@ -45,7 +45,7 @@
         <div class="img">
 
             {% for image in currentChapter.images %}
-            <img src="{{asset('uploads/imagesChapter/' ~ image.imagesChapter)}}" alt="Images de manga">
+            <img src="{{asset('uploads/imagesChapter/' ~ image.imagesChapter)}}" alt="Images de chapitre du manga">
             {% endfor %}
 
         </div>

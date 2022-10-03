@@ -18,15 +18,14 @@ class CategorieController extends AbstractController
     public function TriCat(CategorieRepository $categorieRepository, Categorie $categorie = null, MangaRepository $mangaRepository): Response
     {
         if ($categorie !== null) {
-            $mangaTri = $categorie->getMangas();
+            $mangaTri = $categorie->getMangas(); //récuperer les mangas de chaque catégories
         } else {
             $mangaTri = null;
         }
         return $this->render('user/categorie.html.twig', [
-            "listCategorie" => $categorieRepository->findAll(),
-            // Trier en Asc orderBy('c.title', 'ASC')
-            'mangaTri' => $mangaTri,
-            'lastManga' => $mangaRepository->findByLastChapterAdded(9),
-        ]);
+            "listCategorie" => $categorieRepository->findAll(),         //Affichage de toute les catégories
+            'mangaTri' => $mangaTri,                                       //Affichages des mangas de chaque catégories
+            'lastManga' => $mangaRepository->findByLastChapterAdded(9),    //Affichage des chapitres via les          
+        ]);                                                                 //uptdates fais en fonction du dernier chap sortie
     }
 }
