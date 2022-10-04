@@ -8,7 +8,7 @@
 
     <div class="first">
         {% for categorie in listCategorie %}
-        <a class="img" href="{{path('app_tri', {'id': categorie.id}) }}">
+        <a href="{{path('app_tri', {'id': categorie.id}) }}">
             {{categorie.title}}
         </a>
         {% endfor %}

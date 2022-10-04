@@ -10,13 +10,18 @@
   width: 49%;
   color: white;
 }
-.manga .first img {
+.manga .img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 .manga .second {
   padding-left: 10px;
+}
+.manga .second img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .manga .second h3 {
   padding: 5px 0;
@@ -43,11 +48,6 @@
   .manga .img {
     padding: 10px;
     width: 40%;
-  }
-  .manga .img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
   }
   .manga .second {
     padding: 10px;
