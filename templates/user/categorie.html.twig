@@ -44,8 +44,8 @@
         {# Boucle for avec des a pour chaque chapitre #}
 
         {% for chapter in manga.chapters|reverse %}
-
-        {% if loop.index <= 4 %} <a href="#">{{ chapter.title}} </a>
+        {% if loop.index <= 4 %}
+         <a href="{{ path('app_Chap', {'id': chapter.id}) }}">{{chapter.title}}</a>
 
             {% endif %}
 
@@ -55,12 +55,14 @@
 
 
 </div>
+
 {% else %}
-<p>Sélectionnez une catégorie</p>
+<div class="manga"><p>Sélectionnez une catégorie</p></div>
+
 
 {% endfor %}
 
-{% endif %}
+
 
 
 

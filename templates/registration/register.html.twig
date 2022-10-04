@@ -12,15 +12,19 @@
     {{ form_row(registrationForm.email) }}
     {{ form_row(registrationForm.pseudo) }}
     {{ form_row(registrationForm.plainPassword.first, {
-            'label': "Mot de passe"
-            }) }}
-            <div class="form-label mt-4">
-                {{ form_row(registrationForm.plainPassword.second, {
-                    'label': "Répétition"
-                    }) }}
-            </div>
-    
-   <a class="CGU" href="#">{{ form_row(registrationForm.agreeTerms) }}</a> 
+    'label': "Mot de passe"
+    }) }}
+    <div class="form-label mt-4">
+        {{ form_row(registrationForm.plainPassword.second, {
+        'label': "Répétition"
+        }) }}
+    </div>
+    <div class="terme">
+        {{ form_widget(registrationForm.agreeTerms)}}
+        <a href="/">
+           <p>cochez pour accpter les Termes d'Utilisations.</p>
+        </a>
+    </div>
 
     <button type="submit" class="aButton">Inscrivez-vous</button>
     {{ form_end(registrationForm) }}

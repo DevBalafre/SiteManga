@@ -1,24 +1,23 @@
 .manga {
     color: white;
 
-    .CGU {
-        div {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-
-            label {
-                padding-left: 10px;
-                color: white;
+    .terme {
+        display: flex;
+            flex-direction: row;
+            
+       
+            .input {
+                margin: 10px;
             }
 
-        }
+            a {
+                padding: 10px;
+                color: white;
+            }
 
         ;
     }
 
-    .input {
-        margin: 10px 0;
-    }
+    
 
 }

@@ -65,15 +65,14 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           
-                $user = $form->getData();
-                $manager = $doctrine->getManager();
-                $manager->persist($user);
-                $manager->flush();
-                $this->addFlash('sucess', 'Profile mis à jour');
-                // lorsque je sauvegarde la modif je fait une redirection
-                return $this->redirectToRoute("app_user");
-           
+
+            $user = $form->getData();
+            $manager = $doctrine->getManager();
+            $manager->persist($user);
+            $manager->flush();
+            $this->addFlash('sucess', 'Profile mis à jour');
+            // lorsque je sauvegarde la modif je fait une redirection
+            return $this->redirectToRoute("app_user");
         }
 
         return $this->render('user/crud.html.twig', [
@@ -82,24 +81,30 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="search") 
+     * @Route("/search/{research}", name="search") 
      */
-    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository, PagerPaginatorInterface $paginatorInterface, Request $request): Response
+    public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository, PagerPaginatorInterface $paginatorInterface, Request $request, string $research = null): Response
     {
-        $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
-        if ($searchedValue) {
-            $donnes = $mangaRepository->search($searchedValue);
+        if (isset($requestStack->getCurrentRequest()->get('form')['search'])) {
+            return $this->redirectToRoute('search', [
+                'research' => $requestStack->getCurrentRequest()->get('form')['search']
+            ]);
+        } else {
+            if ($research) {
+                $donnes = $mangaRepository->search($research);
+            }
         }
 
         $mangas = $paginatorInterface->paginate(
             $donnes,
             $request->query->getInt('page', 1),
             9
-
         );
+
         return $this->render('user/searchResult.html.twig', [
-            'searchedValue' => $searchedValue,
-            'mangas' => $mangas
+            'searchedValue' => $research,
+            'mangas' => $mangas,
+            'reasearch' => $research
         ]);
     }
 

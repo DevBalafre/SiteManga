@@ -1,17 +1,16 @@
 .manga {
   color: white;
 }
-.manga .CGU div {
+.manga .terme {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+  flex-direction: row;
 }
-.manga .CGU div label {
-  padding-left: 10px;
+.manga .terme .input {
+  margin: 10px;
+}
+.manga .terme a {
+  padding: 10px;
   color: white;
-}
-.manga .input {
-  margin: 10px 0;
 }
 
 /*# sourceMappingURL=register.css.map */

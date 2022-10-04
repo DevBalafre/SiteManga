@@ -1,0 +1,18 @@
+.manga {
+  text-align: center;
+}
+.manga .divButt {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .manga .divButt {
+    display: block;
+  }
+  .manga .divButt div a {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=profil.css.map */

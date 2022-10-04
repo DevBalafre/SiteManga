@@ -1,0 +1,21 @@
+.manga{
+    text-align: center;
+    .divButt{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and (min-width:768px){
+    .manga{
+        .divButt{
+            display: block;
+            
+            div{
+                
+                a{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
