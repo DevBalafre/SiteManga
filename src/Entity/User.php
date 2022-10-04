@@ -40,11 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
 
-     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $resetToken;
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -148,19 +143,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    
-
-    public function getResetToken(): ?string
-    {
-        return $this->resetToken;
-    }
-    public function setResetToken(string $resetToken): self
-    {
-        $this->resetToken = $resetToken;
-
-        return $this;
     }
 
     public function getPseudo(): ?string
