@@ -1,7 +1,7 @@
 .manga {
   margin: 5px 0;
 }
-.manga img {
+.manga .img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
