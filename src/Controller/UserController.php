@@ -86,12 +86,12 @@ class UserController extends AbstractController
     public function searchResult(RequestStack $requestStack, MangaRepository $mangaRepository, PagerPaginatorInterface $paginatorInterface, Request $request, string $research = null): Response
     {
         if (isset($requestStack->getCurrentRequest()->get('form')['search'])) {
-            return $this->redirectToRoute('search', [
+            return $this->redirectToRoute('search', [           
                 'research' => $requestStack->getCurrentRequest()->get('form')['search']
             ]);
         } else {
-            if ($research) {
-                $donnes = $mangaRepository->search($research);
+            if ($research) {                                         //récupération de la valeur chercher dans la barre
+                $donnes = $mangaRepository->search($research);       // afin de pour acceder aux page suivantes de paginator
             }
         }
 

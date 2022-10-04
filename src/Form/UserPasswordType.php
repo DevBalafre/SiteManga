@@ -64,7 +64,7 @@ class UserPasswordType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Validez votre mot de passe',
                 'attr' => [
-                    'class' => 'buttonForm'
+                    'class' => 'aButton'
                 ]
                 
 

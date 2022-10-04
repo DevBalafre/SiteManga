@@ -40,6 +40,7 @@ body {
 main {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  min-height: calc(100vh - 642.5px);
 }
 
 a {
@@ -65,6 +66,10 @@ a {
   font-size: 16px;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+.aButton:hover {
+  background-color: rgb(29, 26, 32);
 }
 
 /*  Alert */
@@ -123,12 +128,16 @@ form div input {
 /* Navbar */
 header {
   background-color: rgb(0, 0, 0);
+  padding-bottom: 10px;
+}
+header div {
+  margin-bottom: 10px;
 }
 
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 10px;
   font-size: 1.1rem;
   color: var(--navbar-color);
@@ -164,15 +173,19 @@ header {
 footer {
   background-color: rgb(0, 0, 0);
 }
+footer .copyright {
+  padding-top: 30px;
+}
 
 .footer {
   margin-top: 10px;
   padding: 10px;
   color: #FFF;
-  text-align: center;
 }
 .footer .anf {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .footer .anf h2 {
   font-size: 17px;
@@ -301,6 +314,11 @@ footer {
 /*  other devices  */
 @media screen and (min-width: 768px) {
   /* Navabar */
+  header div form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
   .navbar .logo {
     width: 15%;
   }

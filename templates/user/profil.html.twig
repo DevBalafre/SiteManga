@@ -4,8 +4,11 @@
 {% endblock %}
 {% block body %}
 <div class="manga">
-    <div> {{ app.user.pseudo }} </div>
-    <div> {{app.user.email}} </div>
+    <h2>Votre profil</h2>
+    <div class="affichage">
+        <div> {{ app.user.pseudo }} </div>
+        <div> {{app.user.email}} </div>
+    </div>
     <div class="divButt">
         <div>
             <a class="aButton" href="{{path('app_crud')}}">Modifier le profil</a>

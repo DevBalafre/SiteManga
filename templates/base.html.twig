@@ -43,10 +43,11 @@
                 <button class="burger">
                     <span class="bar"></span>
                 </button>
-                {{ render(controller(
+                
+            </nav>
+            {{ render(controller(
                 'App\\Controller\\UserController::searchBar'
                 )) }}
-            </nav>
         </div>
 
 
@@ -66,9 +67,6 @@
     </main>
     <footer>
         <div class="footer container">
-
-
-
 
             <div class="anf">
                 <ul>
@@ -109,7 +107,7 @@
                     architecto aliquid nemo aliquam doloribus fuga reiciendis dolorem laboriosam nisi, porro sunt
                     corrupti eveniet.</p>
             </div>
-            <div>Copyright © 2022 OnlyScan <a class="mention" href="#">Mentions légales</a></div>
+            <div class="copyright">Copyright © 2022 OnlyScan <a class="mention" href="#">Mentions légales</a></div>
         </div>
     </footer>
     <script src="{{asset('assets/js/script.js')}}"></script>
