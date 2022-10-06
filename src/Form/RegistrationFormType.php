@@ -52,33 +52,32 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' =>'Les deux mots de passe ne correpondent pas ',
+                'invalid_message' => 'Les deux mots de passe ne correpondent pas ',
                 'mapped' => false,
-                
+
                 'attr' => [
-                    'autocomplete' => 'new-password' ],
-                    'first_options' =>[
-                        'constraints' => [
-                            new NotBlank([
-                                'message' => 'Vous devez entrer un mot de passe',
-                            ]),
-                            new PasswordStrength([
-                                'minLength' => 8,
-                                'tooShortMessage' => 'Le mot de passe doit contenir au moins 8 carctères',
-                                'minStrength' => 4,
-                                'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
-                            ])
-                        ],
+                    'autocomplete' => 'new-password'
+                ],
+                'first_options' => [
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Vous devez entrer un mot de passe',
+                        ]),
+                        new PasswordStrength([
+                            'minLength' => 8,
+                            'tooShortMessage' => 'Le mot de passe doit contenir au moins 8 carctères',
+                            'minStrength' => 4,
+                            'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial',
+                        ])
                     ],
-                    'second_options' =>[
-                        
-                        'constraints' => [
-                            new NotBlank([
-                                'message' =>'Merci de confirmer le mot de passe'
-                            ])
-                        ]
+                ],
+                'second_options' => [
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Merci de confirmer le mot de passe'
+                        ])
                     ]
-                
+                ]
             ]);
     }
 
