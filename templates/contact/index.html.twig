@@ -3,6 +3,7 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/contact.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -12,13 +13,13 @@
 
     <div class="row">
 
-        <div class="demi">
+        <div>
             {{form_row(contactForm.email, {
                 'label':'email',
             })}}
         </div>
 
-        <div class="demi">
+        <div>
             {{form_row(contactForm.sujet, {
                 'label':'sujet'
             })}}
@@ -28,7 +29,7 @@
    
     <div class="row">
 
-        <div class="plein">
+        <div>
             {{form_row(contactForm.message, {
                 'label':'message'
             })}}
@@ -37,7 +38,7 @@
     </div>
     <div class="row">
 
-        <div class="plein">
+        <div>
             {{form_row(contactForm.fichier, {
                 'label':'objet'
             })}}

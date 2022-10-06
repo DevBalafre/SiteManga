@@ -17,6 +17,11 @@
   padding: 0;
 }
 
+textarea {
+  padding: 15px 0;
+  border-radius: 7px;
+}
+
 ul {
   list-style: none;
 }
@@ -38,8 +43,8 @@ body {
 }
 
 main {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
   min-height: calc(100vh - 642.5px);
 }
 
@@ -59,7 +64,7 @@ a {
   background-color: rgb(22, 21, 29);
   border: none;
   color: white;
-  padding: 5px 10px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -96,6 +101,7 @@ h2,
 h3 {
   color: #FFF;
   margin: 10px 0;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -132,6 +138,10 @@ header {
 }
 header div {
   margin-bottom: 10px;
+}
+header div input {
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .navbar {
@@ -171,6 +181,7 @@ header div {
 
 /* Footer */
 footer {
+  padding-top: 2rem;
   background-color: rgb(0, 0, 0);
 }
 footer .copyright {
@@ -182,21 +193,25 @@ footer .copyright {
   padding: 10px;
   color: #FFF;
 }
-.footer .anf {
+.footer .cgu {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.footer .anf h2 {
+.footer .cgu ul {
+  width: 40%;
+}
+.footer .cgu h2 {
   font-size: 17px;
 }
-.footer .anf a {
+.footer .cgu a {
   color: rgb(250, 228, 228);
+  padding: 15px 10;
 }
 .footer .resaux {
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 .footer .resaux .img {
   width: 20%;
@@ -314,6 +329,10 @@ footer .copyright {
 /*  other devices  */
 @media screen and (min-width: 768px) {
   /* Navabar */
+  header {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
   header div form {
     margin-left: auto;
     margin-right: auto;
@@ -337,11 +356,14 @@ footer .copyright {
     padding-top: 1.25rem;
   }
   /* Footer */
-  .footer .anf {
-    justify-content: center;
+  .footer div {
+    padding: 20px 0;
   }
-  .footer .anf ul {
+  .footer .cgu ul {
     padding: 10px 50px;
+  }
+  .footer .cgu ul h2 {
+    font-size: 1.5rem;
   }
 }
 

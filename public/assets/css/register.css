@@ -1,6 +1,12 @@
 .manga {
   color: white;
 }
+.manga input {
+  border-radius: 10px;
+}
+.manga label {
+  text-transform: uppercase;
+}
 .manga .terme {
   display: flex;
   flex-direction: row;

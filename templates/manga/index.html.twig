@@ -42,7 +42,7 @@
 <div class="manga">
 
     <div class="commentForm ">
-
+        {% if app.user %}
         {{ form_start(commentForm) }}
 
         <div class="champ">
@@ -67,6 +67,9 @@
         </div>
 
         {{ form_end(commentForm) }}
+        {% else %}
+        <p>Vous devez être connecté pour pouvoir commenter ce manga (<a href="{{ path('app_login') }}">connexion</a>)</p>
+        {% endif %}
     </div>
 
 </div>
@@ -82,10 +85,10 @@
         <div class="commentMid">
             <p>{{comment.dateCreation.format('j/M/Y ')}}</p>
             <p>{{ comment.user.pseudo }}</p>
-            
+
         </div>
 
-        
+
     </div>
     <p>{{comment.content}}</p>
 

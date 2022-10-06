@@ -1,19 +1,20 @@
-.manga{
+.manga {
     margin: 10px;
+    text-align: center;
 
-   
-    .first{
+    .first {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
 
-        a{
+        a {
             width: 49%;
             color: white;
-            
+
         }
-       
+
     }
+
     .img {
         img {
             width: 100%;
@@ -21,13 +22,16 @@
             object-fit: contain;
         }
     }
+
     .second {
         padding-left: 10px;
+
         img {
             width: 100%;
             height: 100%;
             object-fit: contain;
         }
+
         h3 {
             padding: 5px 0;
 
@@ -39,7 +43,7 @@
 
 
     }
-    
+
 
     .chapterList {
         display: flex;
@@ -58,13 +62,13 @@
         display: flex;
         flex-wrap: wrap;
         padding: 10px;
-        justify-content: space-evenly;
-        
+        justify-content: center;
+
         .img {
             padding: 10px;
             width: 40%;
 
-           
+
         }
 
         .second {

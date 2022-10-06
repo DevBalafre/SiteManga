@@ -1,23 +1,27 @@
 .manga {
     color: white;
 
+    input {
+        border-radius: 10px;
+    }
+    label{
+        text-transform: uppercase;
+    }
     .terme {
         display: flex;
-            flex-direction: row;
-            
-       
-            .input {
-                margin: 10px;
-            }
+        flex-direction: row;
 
-            a {
-                padding: 10px;
-                color: white;
-            }
+        .input {
+            margin: 10px;
+
+        }
+
+        a {
+            padding: 10px;
+            color: white;
+        }
 
         ;
     }
-
     
-
 }

@@ -6,6 +6,7 @@
         height: 100%;
         object-fit: contain;
     }
+
   }
     
     .second {
@@ -20,7 +21,6 @@
         .description {
             padding-bottom: 1rem;
         }
-
 
     }
 
@@ -52,10 +52,12 @@
 
                 input {
                     width: 100%;
+                    border-radius: 8px;
                 }
 
                 textarea {
                     width: 100%;
+                    
                 }
             }
 

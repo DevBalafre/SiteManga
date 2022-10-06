@@ -21,19 +21,11 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label_attr' => [
-                    "class" => "form-label mt-4"
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                ],
+               
             ])
             ->add('pseudo', TextType::class, [
-                'label_attr' => [
-                    "class" => "form-label mt-4"
-                ],
+               
                 "attr" => [
-                    'class' => 'form-control',
                     'minlength' => '4',
                     'minMessage' => 'Ton pseudo doit contenir {{ limit }} caracters',
                     // max length allowed by Symfony for security reasons

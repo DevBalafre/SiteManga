@@ -51,7 +51,7 @@ class ImageCrudController extends AbstractCrudController
                 ->onlyOnForms()
                 ->setUploadedFileNamePattern("[contenthash].[extension]"),
                 ImageField::new('imagesChapter')
-                ->setBasePath("/uploads/imagesChapter")            
+                ->setBasePath("/uploads/imagesChapter")        
                 ->onlyOnIndex(),
 
             AssociationField::new("chapter")
