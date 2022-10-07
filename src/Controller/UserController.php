@@ -156,4 +156,11 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/cgu", name="app_cgu")
+     */
+    public function cgu()
+    {
+        return $this->render('user/cgu.html.twig');
+    }
 }

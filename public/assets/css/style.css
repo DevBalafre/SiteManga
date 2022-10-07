@@ -26,6 +26,10 @@ ul {
   list-style: none;
 }
 
+img {
+  border-radius: 10px;
+}
+
 /* Basic style */
 body {
   padding: 0;
@@ -339,7 +343,7 @@ footer .copyright {
     width: 50%;
   }
   .navbar .logo {
-    width: 15%;
+    width: 20%;
   }
   .navbar .navbar__link > a::after {
     display: block;
@@ -352,9 +356,7 @@ footer .copyright {
   .navbar .navbar__link:hover > a::after {
     width: 100%;
   }
-  .main-content {
-    padding-top: 1.25rem;
-  }
+  /* Main*/
   /* Footer */
   .footer div {
     padding: 20px 0;

@@ -25,7 +25,9 @@ textarea {
 ul {
   list-style: none;
 }
-
+img{
+  border-radius: 10px;
+}
 /* Basic style */
 body {
   padding: 0;
@@ -393,7 +395,7 @@ footer {
 
   .navbar {
     .logo {
-      width: 15%;
+      width: 20%;
     }
 
 
@@ -410,12 +412,9 @@ footer {
       width: 100%;
     }
   }
+/* Main*/
 
-  .main-content {
 
-    padding-top: 1.25rem;
-
-  }
 
   /* Footer */
   .footer {
