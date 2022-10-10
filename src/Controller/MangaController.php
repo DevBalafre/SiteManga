@@ -37,7 +37,7 @@ class MangaController extends AbstractController
             $manager = $doctrine->getManager();
             $manager->persist($comment);
             $manager->flush();
-            return $this->redirectToRoute('app_manga', ['id' => $id, '_fragment' => 'comments']);   // vider le champs de formulaires + affichage sdirectement sur la section comment
+            return $this->redirectToRoute('app_manga', ['id' => $id, '_fragment' => 'comments']);   // vider le champs de formulaires + affichage directement sur la section commentaire
 
         }
 
