@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
-
+{% block title %}Page Contact{% endblock %}
+{% block description %}Cette page permet d'envoyer un contact aux administrasteurs du site{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('assets/css/contact.css')}}">
 {% endblock %}
 
 {% block body %}
-
 {{form_start(contactForm)}}
 <div class="manga">
 
@@ -15,23 +14,23 @@
 
         <div>
             {{form_row(contactForm.email, {
-                'label':'email',
+            'label':'email',
             })}}
         </div>
 
         <div>
             {{form_row(contactForm.sujet, {
-                'label':'sujet'
+            'label':'sujet'
             })}}
         </div>
 
     </div>
-   
+
     <div class="row">
 
         <div>
             {{form_row(contactForm.message, {
-                'label':'message'
+            'label':'message'
             })}}
         </div>
 
@@ -40,7 +39,7 @@
 
         <div>
             {{form_row(contactForm.fichier, {
-                'label':'objet'
+            'label':'objet'
             })}}
         </div>
 
@@ -50,12 +49,10 @@
     <div class="cadre">
         <button type="submit" class="aButton"> Envoyer</button>
     </div>
-    
+
 </div>
 
 {{form_end(contactForm)}}
-
-
 
 
 {% endblock %}

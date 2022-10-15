@@ -6,13 +6,11 @@
 {% endblock %}
 
 {% block title %} Only Scan{% endblock %}
-
+{% block description %}Cette page permet de visionner les dernier manga qui ont été mis en lignes{% endblock %}
 {% block body %}
-
 
 <div class="parent">
     {% for manga in lastManga %}
-
 
     <div class="manga">
         <a class="img" href="{{ path('app_manga', {'id': manga.id}) }}">

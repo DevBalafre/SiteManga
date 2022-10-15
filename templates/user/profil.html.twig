@@ -2,19 +2,20 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('assets/css/profil.css')}}">
 {% endblock %}
+
+{% block description %}Cette page permet a l'utilisteur de regarder ces information personnelles{% endblock %}
+
 {% block body %}
+
 <div class="manga">
+
     <h2>Votre profil</h2>
-
-
 
     <div class="affichage">
         <div> {{ app.user.pseudo }} </div>
         <div> {{app.user.email}} </div>
     </div>
 
-
-    
     <div class="divButt">
         <div>
             <a class="aButton" href="{{path('app_crud')}}">Modifier le profil</a>

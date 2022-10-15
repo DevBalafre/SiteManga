@@ -4,8 +4,12 @@
 <link rel="stylesheet" href="{{asset('assets/css/chap.css')}}">
 {% endblock %}
 
-{# {% block title %} {{manga.title ~ chapter.title}} {% endblock %} #}
+{% block title %}{% for manga in mangaTitle %}
+{{manga.title ~ chapter.title}}
+{% endfor %} 
 
+{% endblock %}
+{% block description %}Cette page permet d'afficher les pages des chapitres des mangas{% endblock %}
 {% block body %}
 
 <div class="manga">

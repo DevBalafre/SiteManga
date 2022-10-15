@@ -24,13 +24,13 @@ class ContactController extends AbstractController
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
 
-            if (empty($contactForm['honeypot']->getData())) { //Filtre les bots
+            if (empty($contactForm['honeypot']->getData())) {                //Filtre les bots
 
 
-                $contact = $contactForm->getData(); //recup infos formulaire
-                $email = (new TemplatedEmail()) //prépare un email via template twig
-                    ->from(new Address($contact['email'])) //expéditeur
-                    ->to(new Address('mohamedfabrice.pro@gmail.com')) //destinataire
+                $contact = $contactForm->getData();                         //recup infos formulaire
+                $email = (new TemplatedEmail())                            //prépare un email via template twig
+                    ->from(new Address($contact['email']))                 //expéditeur
+                    ->to(new Address('mohamedfabrice.pro@gmail.com'))      //destinataire
                     ->replyTo(new Address($contact['email']))
                     ->subject($contact['sujet'])
                     ->htmlTemplate('email/contact_email.html.twig')

@@ -22,7 +22,7 @@ class CategorieController extends AbstractController
         } else {
             $mangaTri = null;
         }
-        return $this->render('user/categorie.html.twig', [
+        return $this->render('manga/categorie.html.twig', [
             "listCategorie" => $categorieRepository->findAll(),         //Affichage de toute les catégories
             'mangaTri' => $mangaTri,                                       //Affichages des mangas de chaque catégories
             'lastManga' => $mangaRepository->findByLastChapterAdded(9),    //Affichage des chapitres via les          

@@ -3,12 +3,13 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{asset('assets/css/manga.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/pagination.css')}}">
+
 {% endblock %}
+{% block description %} Cette page affiche les recherches  {% endblock %}
+{% block title %} Résultats de la recherche {{searchedValue}} {% endblock %}
 
-{% block description %} Résultats de la recherche {{searchedValue}} {% endblock %}
 
 
-{% block title %} Recherche {% endblock %}
 {% block breadcrump %}
 /
 <a href="{{ path('app_user') }}"> Mangas </a>

@@ -230,11 +230,12 @@ footer .copyright {
   background-color: rgb(0, 0, 0);
 }
 
-/*  Small device */
+.main-content {
+  padding-top: 0.5rem;
+}
+
+/*  Small device Burger */
 @media screen and (max-width: 767.98px) {
-  .main-content {
-    padding-top: 0.5rem;
-  }
   .navbar__links {
     overflow: hidden;
     display: flex;
@@ -356,7 +357,6 @@ footer .copyright {
   .navbar .navbar__link:hover > a::after {
     width: 100%;
   }
-  /* Main*/
   /* Footer */
   .footer div {
     padding: 20px 0;

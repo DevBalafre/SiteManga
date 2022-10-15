@@ -14,8 +14,13 @@ class CommentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('subject', TextType::class)
-            ->add('content', TextareaType::class);
+            ->add('subject', TextType::class, [
+                'label' => 'Sujet',
+            ]
+            )
+            ->add('content', TextareaType::class, [
+                'label' => 'Contenu',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

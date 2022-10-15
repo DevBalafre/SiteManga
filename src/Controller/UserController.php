@@ -126,43 +126,13 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/utlisateur/editPassword/{id}", name="editPassword") 
-     */
-    public function editPassword(User $user, Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $hasher): Response
-    {
-
-        $form = $this->createForm(UserPasswordType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($user, $form->get('plainPassword')->getData())) {
-                $manager = $doctrine->getManager();
-                $user->setPassword($hasher->hashPassword($user, $form->get('newPassword')->getData()));
-                $manager->flush();
-                $this->addFlash('sucess', 'Profile mis à jour');
-                // lorsque je sauvegarde la modif je fait une redirection
-                return $this->redirectToRoute("app_user");
-            } else {
-                $this->addFlash(
-                    'error',
-                    'Le mot de passe renseigné est incorect'
-                );
-            }
-        }
-
-
-        return $this->render('user/editPassword.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/cgu", name="app_cgu")
      */
     public function cgu()
     {
-        return $this->render('user/cgu.html.twig');
+        return $this->render('legal/cgu.html.twig');
     }
 
     /**
@@ -170,6 +140,6 @@ class UserController extends AbstractController
      */
     public function mentionLegal()
     {
-        return $this->render('user/mentionLegal.html.twig');
+        return $this->render('legal/mentionLegal.html.twig');
     }
 }

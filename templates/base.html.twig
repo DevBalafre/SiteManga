@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Onlyscan{% endblock %}</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <meta proprety="og:type" content="website"  >
+    <meta name="description" content="{% block description %}{% endblock %}">
+
+    <title>Only Scan - {% block title %}{% endblock %}</title>
+
+
+    <link rel="icon" type="image/png" href="{{asset('assets/img/logo.png')}}" />
 
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
@@ -24,10 +28,12 @@
     <header>
 
         <div class="container">
-            <nav class="navbar dark-mode" role="navigation">
+            <nav class="navbar dark-mode">
+                
                 <a class="logo" href="/">
                     <img src="{{asset('assets/img/logo.png')}}" alt="Logo du site">
                 </a>
+
                 <ul class="navbar__links">
                     <li class="navbar__link first"><a href="{{path('app_categorie')}}">Categorie</a></li>
                     <li class="navbar__link second"><a href="{{path('app_contact')}}">Contact</a></li>
@@ -40,6 +46,7 @@
                     <li class="navbar__link four"><a href="{{path('app_login')}} ">Connexion</a></li>
                     {% endif %}
                 </ul>
+
                 <button class="burger">
                     <span class="bar"></span>
                 </button>
